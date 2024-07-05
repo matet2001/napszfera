@@ -13,6 +13,17 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                mono: ['Roboto Mono', ...defaultTheme.fontFamily.mono],
+            },
+            colors: {
+                'text': '#E5B8F4',
+                'background': '#2D033B',
+                'primary': '#810CA8',
+                'secondary': '#C147E9',
+                'accent': '#E5B8F4',
+            },
+            textTransform: {
+                'uppercase': 'uppercase',
             },
         },
     },

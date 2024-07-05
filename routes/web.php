@@ -7,6 +7,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/meditaciok', function () {
+    return view('welcome');
+});
+
+Route::get('/hangoskonyvek', function () {
+    return view('welcome');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
