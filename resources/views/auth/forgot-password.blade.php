@@ -3,7 +3,9 @@
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 border border-text bg-white/10 shadow-md overflow-hidden sm:rounded-lg items-center justify-center">
 
             <div class="mb-4 text-sm">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+{{--            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}--}}
+                {{ __('Elfelejtetted a jelszavad? Semmi baj. Csak add meg az email címed, és mi kiküldünk neked egy emailt,
+                ami tartalmaz egy jelszó helyreállító linket, amin megadhatsz egy új jelszót.') }}
             </div>
 
             <!-- Session Status -->

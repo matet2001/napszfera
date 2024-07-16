@@ -33,13 +33,23 @@
                         </a>
                     </div>
                     <div class="hidden md:flex space-x-6">
-                        <x-nav-link href="/" :active="request()->is('/')">ELŐADÁSOK</x-nav-link>
+                        <x-nav-link href="/eloadasok" :active="request()->is('eloadasok')">ELŐADÁSOK</x-nav-link>
                         <x-nav-link href="/meditaciok" :active="request()->is('meditaciok')">MEDITÁCIÓK</x-nav-link>
                         <x-nav-link href="/hangoskonyvek" :active="request()->is('hangoskonyvek')">HANGOSKÖNYVEK</x-nav-link>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <x-nav-link href="/login" :active="request()->is('login')">Bejelentkezés</x-nav-link>
-                        <x-nav-link href="/register" :active="request()->is('register')">Regisztráció</x-nav-link>
+                        @guest()
+                            <x-nav-link href="/login" :active="request()->is('login')">Bejelentkezés</x-nav-link>
+                            <x-nav-link href="/register" :active="request()->is('register')">Regisztráció</x-nav-link>
+                        @endguest
+
+                        @auth()
+                            <x-nav-link href="/profile" :active="request()->is('profile')">Profilom</x-nav-link>
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <x-primary-button>Kijelentkezés</x-primary-button>
+                            </form>
+                        @endauth
                     </div>
                 </div>
     {{--            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">--}}

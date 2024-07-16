@@ -1,3 +1,3 @@
 <x-app-layout>
-    Hello World!
+{{--    <x-products></x-products>--}}
 </x-app-layout>

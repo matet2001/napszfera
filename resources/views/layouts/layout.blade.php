@@ -17,7 +17,7 @@
     <body class="bg-background flex flex-col min-h-screen text-text font-mono uppercase">
         <x-header />
 
-        <div class="flex-grow container mx-auto px-6 py-8">
+        <div class="flex-grow container mx-auto px-6 py-8 parent">
             {{ $slot }}
         </div>
 
