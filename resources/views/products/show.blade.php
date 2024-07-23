@@ -12,7 +12,7 @@
                 <div class="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0">
                     <div class="data w-full max-w-xl">
                         <nav aria-label="Breadcrumb">
-                            <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 lg:max-w-7xl mb-5">
+                            <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 lg:max-w-7xl mb-5 text-primary">
                                 <li>
                                     <div class="flex items-center">
                                         <a href="/termekek" class="mr-2 text-sm font-medium hover:text-gray-600">Termékek</a>
@@ -55,10 +55,12 @@
                                 </li>
                             </ol>
                         </nav>
-                        <h2 class="font-bold text-3xl leading-10 mb-2 capitalize">{{ $product->name }}</h2>
+                        <h2 class="font-bold text-3xl leading-10 mb-2 capitalize text-white">
+                            {{ $product->name }}
+                        </h2>
                         <div class="flex flex-col sm:flex-row sm:items-center mb-6">
                             <h6
-                                class="font-manrope font-semibold text-2xl leading-9  pr-5">
+                                class="font-manrope font-semibold text-2xl leading-9  pr-5 text-white">
                                 {{ $product->price }} FT</h6>
                         </div>
                         <p class="text-base font-normal mb-5">
@@ -68,7 +70,7 @@
 
                         <div class="flex items-center gap-3">
                             <button
-                                class="text-center w-full px-5 py-4 rounded-[100px] bg-indigo-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">
+                                class="text-center w-full px-5 py-4 rounded-[100px] bg-primary flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500 hover:bg-accent hover:text-black hover:shadow-indigo-400">
                                 Kosárba
                             </button>
                         </div>
@@ -76,7 +78,7 @@
                 </div>
             </div>
             <div class="mt-20 border-t border-t-gray-600">
-                <h1 class="text-2xl my-10">Kapcsolodó Termékek</h1>
+                <h1 class="text-2xl my-10 text-white">Kapcsolodó Termékek</h1>
                 <div class="grid grid-cols-1 lg:grid-cols-4 mx-auto gap-10">
                     @foreach($relatedProducts as $currentProduct)
                         <x-product-card :product="$currentProduct" />

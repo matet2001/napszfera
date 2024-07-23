@@ -6,9 +6,20 @@ use App\Models\Product;
 
 class ProductsRouteController extends Controller
 {
+    public int $paginationAmount = 12;
+
+    public function index() {
+        $productList = Product::simplePaginate($this->paginationAmount);
+
+        return view('products.index', [
+            'title' => 'Termékek',
+            'productList' => $productList
+        ]);
+    }
+
     // Display all products of type 'lecture'
     public function lecture() {
-        $productList = Product::where('type', 'lecture')->get();
+        $productList = Product::where('type', 'lecture')->simplePaginate($this->paginationAmount);
 
         return view('products.index', [
             'title' => 'Előadások',
@@ -18,7 +29,7 @@ class ProductsRouteController extends Controller
 
     // Display all products of type 'meditation'
     public function meditation() {
-        $productList = Product::where('type', 'meditation')->get();
+        $productList = Product::where('type', 'meditation')->simplePaginate($this->paginationAmount);
 
         return view('products.index', [
             'title' => 'Meditációk',
@@ -28,19 +39,10 @@ class ProductsRouteController extends Controller
 
     // Display all products of type 'audiobook'
     public function audiobook() {
-        $productList = Product::where('type', 'audiobook')->get();
+        $productList = Product::where('type', 'audiobook')->simplePaginate($this->paginationAmount);
 
         return view('products.index', [
             'title' => 'Hangoskönyvek',
-            'productList' => $productList
-        ]);
-    }
-
-    public function index() {
-        $productList = Product::all();
-
-        return view('products.index', [
-            'title' => 'Termékek',
             'productList' => $productList
         ]);
     }
