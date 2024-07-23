@@ -10,9 +10,9 @@
             </a>
         </div>
         <div class="hidden lg:flex items-center space-x-6">
-            <x-nav-link href="/eloadasok" :active="request()->is('eloadasok')">ELŐADÁSOK</x-nav-link>
-            <x-nav-link href="/meditaciok" :active="request()->is('meditaciok')">MEDITÁCIÓK</x-nav-link>
-            <x-nav-link href="/hangoskonyvek" :active="request()->is('hangoskonyvek')">HANGOSKÖNYVEK</x-nav-link>
+            <x-nav-link href="/termekek/eloadasok" :active="request()->is('eloadasok')">ELŐADÁSOK</x-nav-link>
+            <x-nav-link href="/termekek/meditaciok" :active="request()->is('meditaciok')">MEDITÁCIÓK</x-nav-link>
+            <x-nav-link href="/termekek/hangoskonyvek" :active="request()->is('hangoskonyvek')">HANGOSKÖNYVEK</x-nav-link>
         </div>
         <div class="hidden lg:flex ">
             @guest()

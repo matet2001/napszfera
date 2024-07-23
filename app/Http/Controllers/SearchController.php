@@ -11,7 +11,7 @@ class SearchController extends Controller
         where('name', 'LIKE', '%'.request('q').'%')->
         get();
 
-        return view('products.product-page', [
+        return view('products.index', [
             'title' => 'Eredmények',
             'productList' => $productList
         ]);

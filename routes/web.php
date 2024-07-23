@@ -6,10 +6,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StaticPageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -20,9 +16,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/eloadasok', [ProductsRouteController::class, 'eloadasok']);
-Route::get('/meditaciok', [ProductsRouteController::class, 'meditaciok']);
-Route::get('/hangoskonyvek', [ProductsRouteController::class, 'hangoskonyvek']);
+Route::get('/', [ProductsRouteController::class, 'index']);
+Route::get('/termekek', [ProductsRouteController::class, 'index']);
+Route::get('/termekek/eloadasok', [ProductsRouteController::class, 'lecture']);
+Route::get('/termekek/meditaciok', [ProductsRouteController::class, 'meditation']);
+Route::get('/termekek/hangoskonyvek', [ProductsRouteController::class, 'audiobook']);
+Route::get('/termekek/{product}', [ProductsRouteController::class, 'show']);
 
 Route::get('/terms', [StaticPageController::class, 'terms']);
 Route::get('/privacy', [StaticPageController::class, 'privacy']);
