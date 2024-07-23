@@ -1,4 +1,3 @@
-//TODO add terms
 @vite(['resources/views/legal/legal-format.css'])
 <x-app-layout>
     <div class="h-full">
