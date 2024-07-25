@@ -1,3 +1,4 @@
+@props(['cart'])
 <!-- Slide-over panel container -->
 <div id="slide-over-panel" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
     <!-- Background backdrop -->
@@ -25,25 +26,27 @@
                             <div class="mt-8">
                                 <div class="flow-root">
                                     <ul role="list" class="-my-6 divide-y divide-gray-200">
-{{--                                        <x-cart.cart-side-menu-product :product="{{ \App\Models\Product::first(); }}" />--}}
+{{--                                        @foreach($cart->items as $item)--}}
+{{--                                            <x-cart.cart-side-menu-product :product="$item"/>--}}
+{{--                                        @endforeach--}}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                             <div class="flex justify-between text-base font-medium text-gray-900">
-                                <p>Subtotal</p>
+                                <p>Összeg: </p>
                                 <p>$262.00</p>
                             </div>
-                            <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                            <p class="mt-0.5 text-sm text-gray-500">Kedvezmények és adok számítása fizetésnél</p>
                             <div class="mt-6">
-                                <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
+                                <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Fizetés</a>
                             </div>
                             <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>
-                                    or
+                                    vagy
                                     <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">
-                                        Continue Shopping
+                                        Folytatom a vásárlást
                                         <span aria-hidden="true"> &rarr;</span>
                                     </button>
                                 </p>

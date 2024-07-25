@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsRouteController extends Controller
 {
@@ -10,40 +12,48 @@ class ProductsRouteController extends Controller
 
     public function index() {
         $productList = Product::simplePaginate($this->paginationAmount);
+//        $cart = $this->getCart();
 
         return view('products.index', [
             'title' => 'Termékek',
-            'productList' => $productList
+            'productList' => $productList,
+//            'cart' => $cart
         ]);
     }
 
     // Display all products of type 'lecture'
     public function lecture() {
         $productList = Product::where('type', 'lecture')->simplePaginate($this->paginationAmount);
+        $cart = $this->getCart();
 
         return view('products.index', [
             'title' => 'Előadások',
-            'productList' => $productList
+            'productList' => $productList,
+            'cart' => $cart
         ]);
     }
 
     // Display all products of type 'meditation'
     public function meditation() {
         $productList = Product::where('type', 'meditation')->simplePaginate($this->paginationAmount);
+        $cart = $this->getCart();
 
         return view('products.index', [
             'title' => 'Meditációk',
-            'productList' => $productList
+            'productList' => $productList,
+            'cart' => $cart
         ]);
     }
 
     // Display all products of type 'audiobook'
     public function audiobook() {
         $productList = Product::where('type', 'audiobook')->simplePaginate($this->paginationAmount);
+        $cart = $this->getCart();
 
         return view('products.index', [
             'title' => 'Hangoskönyvek',
-            'productList' => $productList
+            'productList' => $productList,
+            'cart' => $cart
         ]);
     }
 
@@ -52,10 +62,18 @@ class ProductsRouteController extends Controller
             ->where('id', '!=', $product->id)
             ->take(4)
             ->get();
+        $cart = $this->getCart();
 
         return view('products.show', [
            'product' => $product,
-            'relatedProducts' => $relatedProducts
+            'relatedProducts' => $relatedProducts,
+            'cart' => $cart
         ]);
+    }
+
+    protected function getCart()
+    {
+        $userId = Auth::id();
+        return Cart::with('items.product')->where('user_id', $userId)->firstOrFail();
     }
 }
