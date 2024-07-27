@@ -15,13 +15,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     </head>
     <body class="bg-background flex flex-col min-h-screen text-text font-mono uppercase">
-        <x-header />
+        <x-main.header />
 
         <div class="flex-grow container mx-auto px-6 py-8 parent">
             {{ $slot }}
         </div>
 
-        <x-footer />
-        <x-cart.cart-side-menu :cart="$cart" />
+        <x-main.header />
+        <x-cart.side-menu :cart="$cart" />
     </body>
 </html>

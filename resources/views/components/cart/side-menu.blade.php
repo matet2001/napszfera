@@ -35,7 +35,7 @@
                                     @if($cart && $cart->items->count() > 0)
                                         <ul role="list" class="-my-6 divide-y divide-gray-200">
                                             @foreach($cart->items as $item)
-                                                <x-cart.cart-side-menu-product :item="$item"/>
+                                                <x-cart.side-menu-product :item="$item"/>
                                             @endforeach
                                         </ul>
                                     @else
