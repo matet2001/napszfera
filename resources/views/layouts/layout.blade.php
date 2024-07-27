@@ -22,6 +22,6 @@
         </div>
 
         <x-footer />
-        <x-cart.cart-sidemenu />
+        <x-cart.cart-side-menu :cart="$cart" />
     </body>
 </html>
