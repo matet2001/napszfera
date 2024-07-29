@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
                             'image' => $item->product->image,
                             'price' => $item->product->price,
                             'description' => $item->product->description,
+                            'type' => $item->product->type,
                         ];
                     }) : collect([])
                 ];
@@ -55,10 +56,11 @@ class AppServiceProvider extends ServiceProvider
                             'image' => $item['image'] ?? 'default-image.jpg', // Default or placeholder image
                             'price' => $item['price'] ?? 0, // Default or placeholder price
                             'description' => $item['description'] ?? 'No description available', // Default or placeholder description
+                            'type' => $item['type'] ?? 'null',
                         ];
                     })
                 ];
-                Log::info('Guest Cart data:', ['cartItems' => $cartItems,'cart' => $cart]);
+//                Log::info('Guest Cart data:', ['cartItems' => $cartItems,'cart' => $cart]);
             }
 
             $view->with('cart', $cart);

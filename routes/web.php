@@ -37,4 +37,6 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
 
+Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+
 require __DIR__.'/auth.php';

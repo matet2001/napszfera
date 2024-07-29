@@ -1,13 +1,9 @@
-@php use Barryvdh\Debugbar\Twig\Extension\Debug;use Illuminate\Support\Facades\Log; @endphp
 @props(['cart'])
 <!-- Slide-over panel container -->
-<div id="slide-over-panel" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog"
-     aria-modal="true">
-    <!-- Background backdrop -->
-    <div id="background-overlay" class="fixed inset-0 bg-gray-500 transition-opacity duration-500 ease-in-out opacity-0"
-         aria-hidden="true"></div>
+<div id="slide-over-panel" class="relative z-10 hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
 
-    <div class="fixed inset-0 overflow-hidden">
+    <div id="cart-background-overlay" class="fixed inset-0 bg-black opacity-0 transition-opacity duration-500 z-40"></div>
+    <div class="fixed inset-0 overflow-hidden z-50">
         <div class="absolute inset-0 overflow-hidden">
             <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                 <div id="slide-over-content"
@@ -43,8 +39,6 @@
                                     @endif
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                             <div class="flex justify-between text-base font-medium text-gray-900">
@@ -59,8 +53,10 @@
                             </div>
                             <p class="mt-0.5 text-sm text-gray-500">Kedvezmények és adók számítása a fizetésnél</p>
                             <div class="mt-6">
-                                <a href="#"
-                                   class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Fizetés</a>
+                                <a href="/cart"
+                                   class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                                    Fizetés
+                                </a>
                             </div>
                             <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>
@@ -80,31 +76,37 @@
 
     <!-- JavaScript for toggling the panel -->
     <script>
-        document.getElementById('open-panel').addEventListener('click', function () {
-            const panel = document.getElementById('slide-over-panel');
-            const content = document.getElementById('slide-over-content');
-            const overlay = document.getElementById('background-overlay');
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('open-panel').addEventListener('click', function () {
+                const panel = document.getElementById('slide-over-panel');
+                const content = document.getElementById('slide-over-content');
+                const overlay = document.getElementById('cart-background-overlay');
+                console.log(overlay);
 
-            panel.classList.remove('hidden');
-            setTimeout(function () {
-                content.classList.remove('translate-x-full');
-                content.classList.add('translate-x-0');
-                overlay.classList.remove('opacity-0');
-                overlay.classList.add('opacity-75');
-            }, 10); // Slight delay to ensure the class removal is recognized
-        });
+                panel.classList.remove('hidden');
+                setTimeout(function () {
+                    content.classList.remove('translate-x-full');
+                    content.classList.add('translate-x-0');
+                    overlay.classList.remove('opacity-0');
+                    overlay.classList.add('opacity-75');
+                    console.log(overlay);
+                }, 10); // Slight delay to ensure the class removal is recognized
+            });
 
-        document.getElementById('close-panel').addEventListener('click', function () {
-            const content = document.getElementById('slide-over-content');
-            const overlay = document.getElementById('background-overlay');
+            document.getElementById('close-panel').addEventListener('click', function () {
+                const content = document.getElementById('slide-over-content');
+                const overlay = document.getElementById('cart-background-overlay');
 
-            content.classList.remove('translate-x-0');
-            content.classList.add('translate-x-full');
-            overlay.classList.remove('opacity-75');
-            overlay.classList.add('opacity-0');
-            setTimeout(function () {
-                document.getElementById('slide-over-panel').classList.add('hidden');
-            }, 500); // Match the duration of the transition
+                content.classList.remove('translate-x-0');
+                content.classList.add('translate-x-full');
+                overlay.classList.remove('opacity-75');
+                overlay.classList.add('opacity-0');
+                setTimeout(function () {
+                    document.getElementById('slide-over-panel').classList.add('hidden');
+                }, 500); // Match the duration of the transition
+                console.log(overlay);
+            });
+
         });
     </script>
 </div>

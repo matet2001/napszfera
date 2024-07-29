@@ -21,7 +21,7 @@
             {{ $slot }}
         </div>
 
-        <x-main.header />
+        <x-main.footer />
         <x-cart.side-menu :cart="$cart" />
     </body>
 </html>

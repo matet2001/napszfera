@@ -44,56 +44,61 @@
         </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
-    <div class="lg:hidden hidden" role="dialog" aria-modal="true" id="sidebar">
+    <div class="lg:hidden hidden fixed inset-0 overflow-hidden z-50" role="dialog" aria-modal="true" id="sidebar-panel">
+        <div class="fixed inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out" id="background-overlay"></div>
         <!-- Background backdrop, show/hide based on slide-over state. -->
-        <div class="fixed inset-0 z-10"></div>
-        <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div class="flex items-center justify-between">
-                <a href="/">
-                    <x-application-logo class="h-10 w-10"/>
-                </a>
-                <a href="/">
-                    <span class="font-semibold text-lg text-white">NAPSZFÉRA</span>
-                </a>
-                <button type="button" class="-m-2.5 rounded-md p-2.5" id="close-menu">
-                    <span class="sr-only">Close menu</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="mt-6 flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
-                    <div class="space-y-2 py-6">
-                        <div class="-mx-3">
-                            <button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
-                                Termékek
-                                <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            <div class="mt-2 space-y-2 hidden" id="disclosure-1">
-                                <a href="/eloadasok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
-                                <a href="/meditaciok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
-                                <a href="/hangoskonyvek" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                <div id="sidebar-content"
+                     class="pointer-events-auto w-screen max-w-sm transform transition-transform duration-500 ease-in-out translate-x-full bg-white px-6 py-6 sm:ring-1 sm:ring-gray-900/10">
+                    <div class="flex items-center justify-between">
+                        <a href="/">
+                            <x-application-logo class="h-10 w-10"/>
+                        </a>
+                        <a href="/">
+                            <span class="font-semibold text-lg text-white">NAPSZFÉRA</span>
+                        </a>
+                        <button type="button" class="-m-2.5 rounded-md p-2.5" id="close-menu">
+                            <span class="sr-only">Close menu</span>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mt-6 flow-root">
+                        <div class="-my-6 divide-y divide-gray-500/10">
+                            <div class="space-y-2 py-6">
+                                <div class="-mx-3">
+                                    <button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
+                                        Termékek
+                                        <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+                                        </svg>
+                                    </button>
+                                    <div class="mt-2 space-y-2 hidden" id="disclosure-1">
+                                        <a href="/eloadasok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
+                                        <a href="/meditaciok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
+                                        <a href="/hangoskonyvek" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
+                                    </div>
+                                </div>
+                                <a href="/contact" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Kapcsolat</a>
+                                <a href="/about" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Rólam</a>
+                            </div>
+                            <div class="py-6">
+                                @guest()
+                                    <x-nav-link href="/login" :active="request()->is('login')">Bejelentkezés</x-nav-link>
+                                    <x-nav-link href="/register" :active="request()->is('register')">Regisztráció</x-nav-link>
+                                @endguest
+
+                                @auth()
+                                    <x-nav-link href="/profile" :active="request()->is('profile')">Profilom</x-nav-link>
+                                    <form method="POST" action="/logout">
+                                        @csrf
+                                        <x-primary-button>Kijelentkezés</x-primary-button>
+                                    </form>
+                                @endauth
                             </div>
                         </div>
-                        <a href="/contact" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Kapcsolat</a>
-                        <a href="/about" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Rólam</a>
-                    </div>
-                    <div class="py-6">
-                        @guest()
-                            <x-nav-link href="/login" :active="request()->is('login')">Bejelentkezés</x-nav-link>
-                            <x-nav-link href="/register" :active="request()->is('register')">Regisztráció</x-nav-link>
-                        @endguest
-
-                        @auth()
-                            <x-nav-link href="/profile" :active="request()->is('profile')">Profilom</x-nav-link>
-                            <form method="POST" action="/logout">
-                                @csrf
-                                <x-primary-button>Kijelentkezés</x-primary-button>
-                            </form>
-                        @endauth
                     </div>
                 </div>
             </div>
@@ -101,19 +106,32 @@
     </div>
 </header>
 
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const openMenuButton = document.getElementById('open-menu');
         const closeMenuButton = document.getElementById('close-menu');
-        const sidebar = document.getElementById('sidebar');
+        const sidebarPanel = document.getElementById('sidebar-panel');
+        const sidebarContent = document.getElementById('sidebar-content');
+        const backgroundOverlay = document.getElementById('background-overlay');
 
         openMenuButton.addEventListener('click', function () {
-            sidebar.classList.remove('hidden');
+            sidebarPanel.classList.remove('hidden');
+            setTimeout(function () {
+                sidebarContent.classList.remove('translate-x-full');
+                sidebarContent.classList.add('translate-x-0');
+                backgroundOverlay.classList.remove('opacity-0');
+                backgroundOverlay.classList.add('opacity-75');
+            }, 10);
         });
 
         closeMenuButton.addEventListener('click', function () {
-            sidebar.classList.add('hidden');
+            sidebarContent.classList.remove('translate-x-0');
+            sidebarContent.classList.add('translate-x-full');
+            backgroundOverlay.classList.remove('opacity-75');
+            backgroundOverlay.classList.add('opacity-0');
+            setTimeout(function () {
+                sidebarPanel.classList.add('hidden');
+            }, 500);
         });
 
         // Product sub-menu toggle
@@ -127,3 +145,4 @@
         });
     });
 </script>
+

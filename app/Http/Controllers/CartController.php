@@ -16,8 +16,16 @@ class CartController extends Controller
     public function index()
     {
         $cart = $this->getCart();
-        return view('cart.index', ['cart' => $cart]);
+//        Log::info('cart', ['cart: ', $cart]);
+        // Get 4 random products
+        $randomProducts = Product::inRandomOrder()->take(4)->get();
+
+        return view('cart.index', [
+            'cart' => $cart,
+            'randomProducts' => $randomProducts,
+        ]);
     }
+
 
     public function add(Request $request, $productId)
     {
@@ -25,7 +33,7 @@ class CartController extends Controller
 
         if (Auth::check()) {
             $cart = $this->getCart();
-            Log::info('cart: ', [$cart]);
+            //Log::info('cart: ', [$cart]);
             $cartItem = $cart->items->where('product_id', $productId)->first();
             if ($cartItem) {
                 // Item already in cart
@@ -52,11 +60,12 @@ class CartController extends Controller
                     'image' => $product->image, // Ensure the product model has an 'image' attribute
                     'name' => $product->name, // Ensure the product model has a 'name' attribute
                     'price' => $product->price, // Ensure the product model has a 'price' attribute
-                    'description' => $product->description // Ensure the product model has a 'price' attribute
+                    'description' => $product->description, // Ensure the product model has a 'price' attribute
+                    'type' => $product->type,
                 ];
             }
 
-            Log::info('Cart Items:', ['cart' => $cartItems]);
+            //Log::info('Cart Items:', ['cart' => $cartItems]);
             session()->put('cart', $cartItems);
         }
 
@@ -82,8 +91,6 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-
-
     protected function getCart(){
         if (Auth::check()) {
             $userId = Auth::id();
@@ -96,18 +103,6 @@ class CartController extends Controller
                 $cart = Cart::create(['user_id' => $userId]);
             }
 
-            // Convert cart items to a standard format (collection of objects)
-//            $cartItems = $cart->items->map(function ($item) {
-//                return (object) [
-//                    'id' => $item->id,
-//                    'product_id' => $item->product_id,
-//                    'product' => (object) [
-//                        'id' => $item->product->id,
-//                        'name' => $item->product->name,
-//                        'image' => $item->product->image,
-//                    ],
-//                ];
-//            });
             return $cart;
         } else {
             // For guests, use a cart stored in the session
@@ -122,6 +117,8 @@ class CartController extends Controller
         return (object) ['items' => $cartItems];
     }
 
-
+    public function checkout(){
+        return view('cart.checkout');
+    }
 }
 
