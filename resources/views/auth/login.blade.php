@@ -1,50 +1,44 @@
-<x-app-layout>
-   <x-user-form>
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4 bg-accent" :status="session('status')" />
+<x-layouts.guest>
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <a href="/" class="flex items-center justify-center">
+                <x-application-logo class="h-20 w-20"/>
+            </a>
+            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">Jelentkezz be a profilodba</h2>
+        </div>
 
-        <form method="POST" action="{{ route('login') }}" >
-            @csrf
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form class="space-y-6" action="/login" method="POST">
+                <div>
+                    <label for="email" class="block text-sm font-medium leading-6">Email cím</label>
+                    <div class="mt-2">
+                        <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <label for="password" class="block text-sm font-medium leading-6">Jelszó</label>
+                        <div class="text-sm">
+                            <a href="#" class="font-semibold hover:text-primary">Elfelejtetted a jelszavad?</a>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Jelszó')" />
+                <div class="mt-6"> <!-- Added margin-top here -->
+                    <button type="submit" class="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Bejelentkezés
+                    </button>
+                </div>
+            </form>
 
-                <x-text-input id="password" class="block mt-1 w-full"
-                              type="password"
-                              name="password"
-                              required autocomplete="current-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ms-2 text-sm">{{ __('Emlékezz Rám') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <x-underline-link href="{{ route('password.request') }}">
-                        {{ __('Elfelejtetted a jelszavad?') }}
-                    </x-underline-link>
-                @endif
-
-                <x-primary-button class="ms-3" href="{{ route('login') }}">
-                    {{ __('Bejelentkezés') }}
-                </x-primary-button>
-            </div>
-        </form>
-   </x-user-form>
-
-</x-app-layout>
+            <p class="mt-10 text-center text-sm">
+                Nincs még profilod?
+                <a href="/register" class="font-semibold leading-6 hover:text-primary">Regisztrálj!</a>
+            </p>
+        </div>
+    </div>
+</x-layouts.guest>

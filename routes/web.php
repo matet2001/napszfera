@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [ProductsRouteController::class, 'index']);
-Route::get('/termekek', [ProductsRouteController::class, 'index']);
+Route::get('/termekek', [ProductsRouteController::class, 'index'])->name('products.index');
 Route::get('/termekek/eloadasok', [ProductsRouteController::class, 'lecture']);
 Route::get('/termekek/meditaciok', [ProductsRouteController::class, 'meditation']);
 Route::get('/termekek/hangoskonyvek', [ProductsRouteController::class, 'audiobook']);
