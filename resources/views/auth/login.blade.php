@@ -20,7 +20,7 @@
                     <div class="flex items-center justify-between">
                         <label for="password" class="block text-sm font-medium leading-6">Jelszó</label>
                         <div class="text-sm">
-                            <a href="#" class="font-semibold hover:text-primary">Elfelejtetted a jelszavad?</a>
+                            <a href="/forgot-password" class="font-semibold hover:text-primary">Elfelejtetted a jelszavad?</a>
                         </div>
                     </div>
                     <div class="mt-2">

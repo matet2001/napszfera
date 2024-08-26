@@ -1,14 +1,16 @@
-<x-app-layout>
-    <div class="h-full w-full flex-grow flex items-center justify-center">
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 border border-text bg-white/10 shadow-md overflow-hidden sm:rounded-lg items-center justify-center">
+<x-layouts.guest>
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <a href="/" class="flex items-center justify-center">
+                <x-application-logo class="h-20 w-20"/>
+            </a>
+            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">Elfelejtett Jelszó</h2>
+            <p class="my-3 text-gray-400 text-md text-center">
+                Add meg e-mail címed, és mi küldünk egy linket a jelszó visszaállításához.
+            </p>
+        </div>
 
-            <div class="mb-4 text-sm">
-{{--            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}--}}
-                {{ __('Elfelejtetted a jelszavad? Semmi baj. Csak add meg az email címed, és mi kiküldünk neked egy emailt,
-                ami tartalmaz egy jelszó helyreállító linket, amin megadhatsz egy új jelszót.') }}
-            </div>
-
-            <!-- Session Status -->
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="POST" action="{{ route('password.email') }}">
@@ -17,16 +19,17 @@
                 <!-- Email Address -->
                 <div>
                     <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    <x-text-input id="email" class="block mt-3 w-full" type="email" name="email" :value="old('email')" placeholder="pelda@gmail.com" required autofocus />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
-                <div class="flex items-center justify-end mt-4">
-                    <x-primary-button>
-                        {{ __('Email Password Reset Link') }}
-                    </x-primary-button>
+                <div class="mt-6"> <!-- Added margin-top here -->
+                    <button type="submit" class="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Jelszó helyreállító link küldése
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-layouts.guest>
+
