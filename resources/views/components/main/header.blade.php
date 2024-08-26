@@ -9,9 +9,9 @@
             </a>
         </div>
         <div class="hidden lg:flex items-center space-x-6">
-            <x-nav-link href="/termekek/eloadasok" :active="request()->is('eloadasok')">ELŐADÁSOK</x-nav-link>
-            <x-nav-link href="/termekek/meditaciok" :active="request()->is('meditaciok')">MEDITÁCIÓK</x-nav-link>
-            <x-nav-link href="/termekek/hangoskonyvek" :active="request()->is('hangoskonyvek')">HANGOSKÖNYVEK</x-nav-link>
+            <x-nav-link href="/termekek/eloadasok" :active="request()->is('termekek/eloadasok')">ELŐADÁSOK</x-nav-link>
+            <x-nav-link href="/termekek/meditaciok" :active="request()->is('termekek/meditaciok')">MEDITÁCIÓK</x-nav-link>
+            <x-nav-link href="/termekek/hangoskonyvek" :active="request()->is('termekek/hangoskonyvek')">HANGOSKÖNYVEK</x-nav-link>
         </div>
         <div class="hidden lg:flex ">
             @guest()
@@ -76,9 +76,9 @@
                                         </svg>
                                     </button>
                                     <div class="mt-2 space-y-2 hidden" id="disclosure-1">
-                                        <a href="/eloadasok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
-                                        <a href="/meditaciok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
-                                        <a href="/hangoskonyvek" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
+                                        <a href="/termekek/eloadasok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
+                                        <a href="/termekek/meditaciok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
+                                        <a href="/termekek/hangoskonyvek" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
                                     </div>
                                 </div>
                                 <a href="/contact" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Kapcsolat</a>
