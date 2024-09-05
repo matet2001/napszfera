@@ -1,9 +1,11 @@
-@vite(['resources/views/legal/legal-format.css'])
+@vite('resources/css/legal-format.css')
+{{--Adatkezelési Tájékoztató--}}
 <x-app-layout>
     <div class="h-full">
         <div class="mx-auto border border-white text-center leading-5 px-6 py-5 rounded-xl m-10">
-            <h1 class="text-lg text-white text-center">Adatkezelési Tájékoztató</h1>
+            <h1 class="text-xl text-white text-center text-bold">Adatkezelési Tájékoztató</h1>
             <br>
+            <div class="text-left">
             <h3 class="my-3">Az adatkezelő adatai:</h3>
             <p>
                 Száraz György egyéni vállalkozó EV52000582, 2120 Dunakeszi, Szent István utca 17.
@@ -59,7 +61,7 @@
                 Az adatkezelési tájékoztatóban foglaltak mellett irányadók továbbá:
             </p>
             <br>
-            <ul style="font-size: smaller;">
+            <ul class="text-sm list-disc pl-10">
                 <li>az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény</li>
                 <li>az elektronikus kereskedelmi szolgáltatások, valamint az információs társadalommal összefüggő szolgáltatások egyes kérdéseiről szóló 2001. évi CVIII. törvény</li>
                 <li>az elektronikus hírközlési ágazatban a személyes adatok kezeléséről, feldolgozásáról és a magánélet védelméről szóló 2002/58/EK irányelv (2002. július 12.)</li>
@@ -70,17 +72,11 @@
             <h2 class="my-3">Az oldal tulajdonosa:</h2>
             <p>
                 Száraz György
-            </p>
-            <br>
-            <p>
+                <br>
                 Székhely: 2120 Dunakeszi, Szent István utca 17.
-            </p>
-            <br>
-            <p>
+                <br>
                 Email cím: <a href="mailto:info@szarazgyorgy.hu">info@szarazgyorgy.hu</a>
-            </p>
-            <br>
-            <p>
+                <br>
                 Adószám: 73577726-1-33
             </p>
             <br>
@@ -88,23 +84,16 @@
             <h2 class="my-3">A tárhelyszolgáltató neve:</h2>
             <p>
                 Evolutionet Kft.
-            </p>
-            <br>
-            <p>
+                <br>
                 Székhely: 7342 Mágocs, Széchenyi utca 75.
-            </p>
-            <br>
-            <p>
+                <br>
                 Cégjegyzékszáma: 02 09 075023
-            </p>
-            <br>
-            <p>
+                <br>
                 Adószáma: 14992511-2-02
-            </p>
-            <br>
-            <p>
+                <br>
                 Honlap webcíme: <a href="http://www.szerverzum.hu">www.szerverzum.hu</a>
             </p>
+            </div>
         </div>
     </div>
 </x-app-layout>

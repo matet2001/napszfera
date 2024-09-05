@@ -1,8 +1,8 @@
-h2, h3 {
+h2, h3, strong {
     color: white;
     line-height: 1rem;
 }
 
 p {
-    font-size: smaller;
+    font-size: medium;
 }

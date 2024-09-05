@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 class StaticPageController extends Controller
 {
     public function terms() {
-        return view('static.terms');
+        return view('static.legal.terms');
     }
     public function privacy() {
-        return view('static.privacy');
+        return view('static.legal.privacy');
     }
 
     public function claim() {
-        return view('static.claim');
+        return view('static.legal.claim');
     }
 
     public function contact() {
