@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductsRouteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -37,6 +38,9 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
 
-Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
-require __DIR__.'/auth.php';
+Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+
+require __DIR__ . '/auth.php';

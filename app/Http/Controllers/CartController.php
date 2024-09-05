@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
-use Barryvdh\Debugbar\Twig\Extension\Debug;
-use DebugBar\DebugBar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 
 class CartController extends Controller
 {
     public function index()
     {
         $cart = $this->getCart();
-//        Log::info('cart', ['cart: ', $cart]);
+
         // Get 4 random products
         $randomProducts = Product::inRandomOrder()->take(4)->get();
 
@@ -118,7 +116,44 @@ class CartController extends Controller
     }
 
     public function checkout(){
-        return view('cart.checkout');
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $cartItems = $this->getCart()->items; // or $cart->items
+
+        // Stripe requires items to be formatted as line items
+        $lineItems = [];
+
+
+        foreach ($cartItems as $item) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'huf',
+                    'product_data' => [
+                        'name' => $item->name,
+                    ],
+                    'unit_amount' => $item->price * 100, // in cents
+                ],
+                'quantity' => 1,
+//                'tax_rates' => ['txr_1PvbV1KX1wr8f3rvV1y7EM6O'],
+            ];
+        }
+
+        try {
+            $checkoutSession = Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [$lineItems],
+                'mode' => 'payment',
+                'billing_address_collection' => 'required',
+                'success_url' => route('checkout.success'),
+                'cancel_url' => route('checkout.cancel'),
+                'locale' => 'hu',
+            ]);
+
+            // Return session ID to frontend
+            return redirect($checkoutSession->url);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }
 
