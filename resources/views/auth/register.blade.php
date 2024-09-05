@@ -18,6 +18,13 @@
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
+                <!-- Phone Number -->
+                <div>
+                    <x-input-label for="phone" :value="__('Telefonszám')" />
+                    <x-text-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone')" required autofocus autocomplete="tel" />
+                    <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                </div>
+
                 <!-- Email Address -->
                 <div class="mt-4">
                     <x-input-label for="email" :value="__('Email')" />
@@ -46,6 +53,13 @@
                                   name="password_confirmation" required autocomplete="new-password" />
 
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <input id="checkbox" type="checkbox" class="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" required>
+                    <label for="checkbox" class="text-sm font-medium">
+                        Elolvastam és elfogadom az <a class="text-white" href="/terms">Általános Szerződési Feltételeket</a>
+                    </label>
                 </div>
 
                 <div class="flex items-center justify-end mt-14" style="margin-top: 3rem;">
