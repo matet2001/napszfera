@@ -60,7 +60,7 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    protected function getCart()
+    public function getCart()
     {
         if (Auth::check()) {
             $userId = Auth::id();

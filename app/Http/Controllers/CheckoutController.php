@@ -2,14 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventory;
+use App\Models\InventoryItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 
 class CheckoutController extends Controller
 {
+    protected $cartController;
+
+    public function __construct(CartController $cartController)
+    {
+        $this->cartController = $cartController;
+    }
+
     public function success(Request $request) {
+
+        // Call the emptyCart method
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cart = $this->cartController->getCart();
+
+            // Create or get the user's inventory
+            $inventory = Inventory::firstOrCreate(['user_id' => $userId]);
+
+            // Add items to the inventory
+            //4242 4242 4242 4242
+            foreach ($cart->items as $item) {
+                InventoryItem::create([
+                    'inventory_id' => $inventory->id,
+                    'product_id' => $item->product_id
+                ]);
+            }
+
+            // Optionally empty the cart
+            $this->cartController->emptyCart();
+        }
+
         return view('cart.success');
     }
 
