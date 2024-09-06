@@ -149,10 +149,12 @@ class CartController extends Controller
                 'locale' => 'hu',
             ]);
 
+            session(['stripe_session_id' => $checkoutSession->id]);
+
             // Return session ID to frontend
             return redirect($checkoutSession->url);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return redirect('checkout.cancel');
         }
     }
 }

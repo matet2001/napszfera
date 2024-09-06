@@ -22,6 +22,9 @@ export default {
                 'primary': '#810CA8',
                 'secondary': '#C147E9',
                 'accent': '#E5B8F4',
+                'yellow': '#FCD34D',
+                'yellow-light': '#FDF3C7'
+
             },
             textTransform: {
                 'uppercase': 'uppercase',

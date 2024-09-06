@@ -29,7 +29,7 @@ Route::get('/terms', [StaticPageController::class, 'terms']);
 Route::get('/privacy', [StaticPageController::class, 'privacy']);
 Route::get('/claim', [StaticPageController::class, 'claim']);
 
-Route::get('/contact', [StaticPageController::class, 'contact']);
+Route::get('/contact', [StaticPageController::class, 'contact'])->name('contact');
 Route::get('/about', [StaticPageController::class, 'about']);
 
 Route::get('/search', SearchController::class);
