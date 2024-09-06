@@ -11,8 +11,8 @@
     <div class="ml-4 flex flex-1 flex-col">
         <div>
             <!-- Product name and price -->
-            <div class="flex justify-between text-base font-medium text-gray-900">
-                <h3>
+            <div class="flex justify-between text-base font-medium text-black">
+                <h3 class="text-black">
                     <!-- Link to product detail page -->
                     <a href="/termekek/{{ $item->product_id }}">{{ $item->name }}</a>
                 </h3>

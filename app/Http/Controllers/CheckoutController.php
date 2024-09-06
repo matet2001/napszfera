@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 
@@ -13,6 +14,9 @@ class CheckoutController extends Controller
     }
 
     public function cancel(Request $request) {
+
+        Log::info('Stripe session ID in cancel: ', [session()->get('stripe_session_id')]);
+
         // Check for an active Stripe session
         if (!session()->has('stripe_session_id')) {
             return redirect()->route('cart.index')->with('warning', 'Nincs megszakított fizetés.');
