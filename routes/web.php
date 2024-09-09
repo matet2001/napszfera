@@ -33,7 +33,7 @@ Route::get('/claim', [StaticPageController::class, 'claim']);
 Route::get('/contact', [StaticPageController::class, 'contact'])->name('contact');
 Route::get('/about', [StaticPageController::class, 'about']);
 
-Route::get('/search', SearchController::class);
+Route::get('/search', [ProductsRouteController::class, 'search']);
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');

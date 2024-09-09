@@ -60,4 +60,20 @@ class ProductsRouteController extends Controller
             'relatedProducts' => $relatedProducts,
         ]);
     }
+
+    public function search() {
+        // Get the search query (if any)
+        $query = request('q');
+
+        // Query the products and paginate the results
+        $productList = Product::query()
+            ->where('name', 'LIKE', '%' . $query . '%')
+            ->simplePaginate($this->paginationAmount);
+
+        return view('products.index', [
+            'title' => 'Eredmények',
+            'productList' => $productList,
+            'query' => $query,  // Passing the query back for the search input
+        ]);
+    }
 }

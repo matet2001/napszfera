@@ -11,8 +11,9 @@
                 @endforeach
             </div>
             <div class="my-10">
-                {{ $productList->links() }} <!-- Pagination links -->
+                {{ $productList->appends(['q' => request('q')])->links() }} <!-- Pagination links -->
             </div>
+
         </div>
     </div>
 </x-app-layout>

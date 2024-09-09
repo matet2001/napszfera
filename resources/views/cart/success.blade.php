@@ -5,6 +5,9 @@
             <p class="text-gray-600 text-center mt-4">
                 Köszönjük a vásárlást! A tranzakció sikeresen lezajlott, és a kosarad kiürült.
             </p>
+            <a href="{{ route('inventory.index') }}" class="mt-6 block w-full text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+                Termékeim
+            </a>
             <a href="{{ route('products.index') }}" class="mt-6 block w-full text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
                 Vásárlás folytatása
             </a>
