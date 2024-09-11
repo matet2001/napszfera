@@ -66,7 +66,7 @@
                             {{ $product->description }}
                         </p>
 
-                        <x-product.addToCardButton :$product />
+                        <x-product.add-to-cart-buttong :$product />
                     </div>
                 </div>
             </div>

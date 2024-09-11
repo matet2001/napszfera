@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -44,5 +45,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Check if the user owns a specific product.
+     *
+     * @param int $productId
+     * @return bool
+     */
+    public function ownsProduct($productId)
+    {
+        return InventoryItem::whereHas('inventory', function ($query) {
+            $query->where('user_id', $this->id);
+        })->where('product_id', $productId)->exists();
     }
 }
