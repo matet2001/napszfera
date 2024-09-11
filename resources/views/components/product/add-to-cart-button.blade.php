@@ -4,7 +4,20 @@
     @csrf
 
     @auth
-        @if (auth()->user()->ownsProduct($product->id))
+        @php
+            // Check if the product is in the cart
+            $isInCart = auth()->user()->cart->items->pluck('product_id')->contains($product->id);
+        @endphp
+
+        @if ($isInCart)
+            <!-- If the product is in the cart, show the cart section -->
+            <div class="w-full px-5 py-4 rounded-[100px] bg-yellow flex items-center justify-center font-semibold text-lg text-black shadow-sm transition-all duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Már a kosárban van</span>
+            </div>
+        @elseif (auth()->user()->ownsProduct($product->id))
             <!-- If the user owns the product, show the checkmark -->
             <a href="{{ route('inventory.show', $product->id) }}" class="w-full px-5 py-4 rounded-[100px] bg-green-500 flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500 hover:bg-green-600">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

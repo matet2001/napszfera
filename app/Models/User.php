@@ -59,4 +59,9 @@ class User extends Authenticatable
             $query->where('user_id', $this->id);
         })->where('product_id', $productId)->exists();
     }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 }
