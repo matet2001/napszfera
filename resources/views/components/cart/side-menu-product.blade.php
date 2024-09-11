@@ -8,19 +8,18 @@
     </div>
 
     <div class="ml-4 flex flex-1 flex-col">
-        <div>
+        <div class="flex justify-between items-start">
             <!-- Product name and price -->
-            <div class="flex justify-between text-base font-medium text-black">
-                <h3 class="text-black">
+            <div class="flex flex-col">
+                <h3 class="text-black text-base font-medium">
                     <!-- Link to product detail page -->
                     <a href="/termekek/{{ $product->product_id }}">{{ $product->name }}</a>
                 </h3>
-                <p class="ml-4">{{ $product->price }} FT</p>
+                <!-- Product description -->
+                <p class="mt-1 text-sm text-gray-500">{{ $product->description ?? '' }}</p>
             </div>
-            <!-- Product description -->
-            <p class="mt-1 text-sm text-gray-500">{{ $product->description ?? '' }}</p>
         </div>
-        <div class="flex flex-1 items-end justify-between text-sm">
+        <div class="flex items-end justify-between text-sm mt-2">
             <div class="flex">
                 <!-- Form to remove product from cart -->
                 <form action="{{ route('cart.remove', $product->product_id) }}" method="POST">
@@ -30,6 +29,7 @@
                     <button type="submit" class="font-medium text-indigo-600 hover:text-indigo-500">Törlés</button>
                 </form>
             </div>
+            <p class="text-base font-medium text-black">{{ $product->price }} FT</p>
         </div>
     </div>
 </li>
