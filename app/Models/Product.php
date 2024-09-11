@@ -13,12 +13,8 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'sku',
         'image',
-        'type'
+        'type',
+        'file_path'
     ];
-
-    public static function create(array $array)
-    {
-    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsRouteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -42,6 +43,10 @@ Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.c
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 
-route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+Route::get('/termekeim', [InventoryController::class, 'index'])->name('inventory.index');
+Route::get('/termekeim/{product}', [InventoryController::class, 'show']);
+
+Route::get('/feltoltes', [ProductController::class, 'create'])->name('products.create');
+Route::post('/feltoltes', [ProductController::class, 'store'])->name('products.store');
 
 require __DIR__ . '/auth.php';

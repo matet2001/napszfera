@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -10,22 +11,18 @@ use Illuminate\Support\Str;
  */
 class ProductFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
-        $types = ['meditation', 'audiobook', 'lecture'];
+    protected $model = Product::class;
 
+    public function definition()
+    {
+        // Define dynamic attributes for the product
         return [
-            'name' => $this->faker->word(),
-            'description' => $this->faker->paragraph(),
-            'price' => $this->faker->randomFloat(0, 1000, 20000),
-            'sku' => strtoupper(Str::random(8)),
-            'image' => $this->faker->imageUrl(),
-            'type' => $this->faker->randomElement($types),
+            'name' => $this->faker->word,
+            'description' => null,
+            'price' => 1000,
+            'image' => '',  // Will be set dynamically
+            'type' => 'meditation',
+            'file_path' => '',  // Will be set dynamically
         ];
     }
 }

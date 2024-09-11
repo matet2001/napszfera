@@ -1,19 +1,23 @@
 <x-app-layout>
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-semibold">Your Inventory</h1>
-
-        @if ($inventory && $inventory->items->count())
-            <ul>
-                @foreach ($inventory->items as $item)
-                    <li class="flex items-center justify-between py-2">
-                        <span>{{ $item->product->name }}</span>
-                        <span>{{ $item->product->price }} HUF</span>
-                    </li>
+    <h1 class="text-3xl mb-10 text-center">Termékeim</h1>
+{{--    <x-search-field />--}}
+    <div>
+        <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 text-center">
+            @if ($inventory && $inventory->items->count())
+            <div class="border-t border-gray-600 w-4/5 my-16 mx-auto"> </div>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                @foreach ($inventory->items as $inventoryItem)
+                    @php
+                        $product = $inventoryItem->product
+                    @endphp
+                    <x-product.inventory-card :$product />
                 @endforeach
-            </ul>
-        @else
-            <p>No items in your inventory.</p>
-        @endif
+            </div>
+            @else
+                <p>No items in your inventory.</p>
+            @endif
+
+        </div>
     </div>
 </x-app-layout>
 

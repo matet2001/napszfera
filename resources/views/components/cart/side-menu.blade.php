@@ -30,8 +30,8 @@
                                 <div class="flow-root">
                                     @if($cart && $cart->items->count() > 0)
                                         <ul role="list" class="-my-6 divide-y divide-gray-200">
-                                            @foreach($cart->items as $item)
-                                                <x-cart.side-menu-product :item="$item"/>
+                                            @foreach($cart->items as $product)
+                                                <x-cart.side-menu-product :$product/>
                                             @endforeach
                                         </ul>
                                     @else
@@ -44,8 +44,8 @@
                             <div class="flex justify-between text-base font-medium text-gray-900">
                                 @php
                                     $sum = 0;
-                                    foreach ($cart->items as $item) {
-                                        $sum += $item->price;
+                                    foreach ($cart->items as $product) {
+                                        $sum += $product->price;
                                     }
                                 @endphp
                                 <p>Összeg: </p>

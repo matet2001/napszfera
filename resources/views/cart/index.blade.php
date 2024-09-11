@@ -8,8 +8,8 @@
                 <div class="flow-root border-gray-600 border-b border-t py-5 ">
                     @if($cart && $cart->items->count() > 0)
                         <ul role="list" class="-my-4 sm:-my-6 divide-y divide-gray-600">
-                            @foreach($cart->items as $item)
-                                <x-cart.summary-product :item="$item"/>
+                            @foreach($cart->items as $product)
+                                <x-cart.summary-product :$product/>
                             @endforeach
                         </ul>
                     @else

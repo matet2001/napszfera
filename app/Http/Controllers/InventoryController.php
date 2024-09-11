@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inventory;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,4 +21,20 @@ class InventoryController extends Controller
 
         return redirect()->route('login')->with('warning', 'Please log in to view your inventory.');
     }
+
+    public function show(Product $product) {
+
+        if (Auth::check()) {
+            return view('inventory.show', [
+                'product' => $product
+            ]);
+        }
+
+        return redirect()->route('login')->with('warning', 'Please log in to view your inventory.');
+    }
+
+
+
+//    TODO: add product audio model
+//    TODO: Add way to upload audio to the admin
 }
