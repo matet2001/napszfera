@@ -1,6 +1,6 @@
 @props(["product"])
 
-<form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex items-center justify-center gap-3 mt-4">
+<form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex items-center justify-center gap-3 mt-4 w-full">
     @csrf
 
     @auth
