@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0">
-                    <div class="data w-full max-w-xl">
+                    <div class="data w-full max-w-2xl">
                         <nav aria-label="Breadcrumb">
                             <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 lg:max-w-7xl mb-5 text-primary">
                                 <li>
