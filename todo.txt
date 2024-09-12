@@ -3,7 +3,7 @@
 -add profil page, with a link to inventory, and change profile
 
 -mobile view has cart, mobil menu contains every route
--lessoning saves place where the user left, don't allow to download audio
+
 -ensure that every valid page is only accasabble through login
 -add admin field to users, make upload admin only
 
