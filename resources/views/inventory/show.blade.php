@@ -61,13 +61,37 @@
                             {{ $product->description }}
                         </p>
 
-                        <audio controls>
+                        <audio id="audioPlayer" controls controlsList="nodownload" oncontextmenu="return false;">
                             <source src="{{ asset($product->file_path) }}" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </x-app-layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var audio = document.getElementById('audioPlayer');
+        var audioKey = 'audio_position_' + '{{ $product->id }}'; // Unique key for each product
+
+        // Load the saved position from localStorage
+        var savedTime = localStorage.getItem(audioKey);
+        if (savedTime !== null) {
+            audio.currentTime = savedTime;
+        }
+
+        // Save the current time to localStorage on time update
+        audio.addEventListener('timeupdate', function() {
+            localStorage.setItem(audioKey, audio.currentTime);
+        });
+
+        // Optionally, you can clear the saved position when the audio ends
+        audio.addEventListener('ended', function() {
+            localStorage.removeItem(audioKey);
+        });
+    });
+</script>

@@ -2,14 +2,13 @@
 -kapcsolat and bemutatkozas static page
 -add profil page, with a link to inventory, and change profile
 
--Make transliton work, at least in catagory types
 -mobile view has cart, mobil menu contains every route
--lesson button to inventory products
 -lessoning saves place where the user left, don't allow to download audio
 -ensure that every valid page is only accasabble through login
 -add admin field to users, make upload admin only
 
--make upload work 
+-remove capital words in certain places
+-make upload work
 -kapcsolodó termékek try to exclude the detailed product, products which are in the cart, the inventory, if there is non, there is no such section
 
 -Research stripe billing, szamlazz.hu and otp sending
