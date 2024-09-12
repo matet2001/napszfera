@@ -3,13 +3,23 @@
     <a class="relative mx-auto flex aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-xl" href="/termekeim/{{ $product->id }}">
         <x-product.image :$product />
     </a>
-    <div class="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center">
-        <div class="flex flex-col text-left">
-            <a href="/termekeim/{{ $product->id }}">
-                <h5 class=" text-lg sm:text-xl leading-8 capitalize text-white">{{ $product->name }}</h5>
+
+    <!-- Product Details -->
+    <div class="flex flex-col h-full mt-4">
+        <!-- Section 1: Product Name -->
+        <div class="flex-grow flex items-center justify-center mb-2">
+            <a href="/termekeim/{{ $product->id }}" class="w-full text-center">
+                <h5 class="text-lg sm:text-xl leading-8 capitalize text-white font-semibold">{{ $product->name }}</h5>
             </a>
-            <p class="text-gray-400 text-sm">{{ $product->type }}</p>
+        </div>
+
+        <x-product.type-paragraph :$product/>
+
+        <!-- Section 3: Add to Cart Button -->
+        <div class="flex-none flex items-center justify-center mt-6">
+            <a href="{{ route('inventory.show', $product->id) }}" class="text-center w-full px-5 py-4 rounded-[100px] bg-primary flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500 hover:bg-accent hover:text-black hover:shadow-indigo-400">
+                <span>Megtekintés</span>
+            </a>
         </div>
     </div>
-    {{--        TODO: Lesson/View button--}}
 </div>

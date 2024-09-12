@@ -17,7 +17,7 @@
 
         <!-- Section 2: Product Type and Price -->
         <div class="flex-grow flex flex-col items-center justify-center mb-2">
-            <p class="text-gray-400 text-sm">{{ $product->type }}</p>
+            <x-product.type-paragraph :$product/>
             <span class="text-md sm:text-lg font-bold text-white mt-1">{{ $product->price }} FT</span>
         </div>
 

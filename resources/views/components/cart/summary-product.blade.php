@@ -28,7 +28,7 @@
                                 {{ $product->name }}
                             </h2>
                         </a>
-                        <p class="text-gray-400 text-sm">{{ $product->type }}</p>
+                        <x-product.type-paragraph :$product />
                         <div class="flex flex-col sm:flex-row sm:items-center mb-4">
                             <h6 class="text-md sm:text-lg leading-7 pr-5 text-white">
                                 {{ $product->price }} FT
