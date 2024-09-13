@@ -1,0 +1,10 @@
+h2, h3, strong {
+    color: white;
+}
+
+p {
+    font-size: medium;
+    line-height: 1.8; /* Adjust the value to increase or decrease the spacing */
+    margin-top: 2.5rem !important;
+}
+

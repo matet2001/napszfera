@@ -1,8 +1,9 @@
--nav bar update, profile view include inventory and change profile routes
 -kapcsolat and bemutatkozas static page
+-nav bar update, profile view include inventory and change profile routes
 -add profil page, with a link to inventory, and change profile
-
 -mobile view has cart, mobil menu contains every route
+
+-prevent hackers from downloading files from url
 
 -remove capital words in certain places
 -make upload work
