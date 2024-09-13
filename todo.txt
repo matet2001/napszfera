@@ -4,9 +4,6 @@
 
 -mobile view has cart, mobil menu contains every route
 
--ensure that every valid page is only accasabble through login
--add admin field to users, make upload admin only
-
 -remove capital words in certain places
 -make upload work
 -kapcsolodó termékek try to exclude the detailed product, products which are in the cart, the inventory, if there is non, there is no such section

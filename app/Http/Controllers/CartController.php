@@ -26,8 +26,6 @@ class CartController extends Controller
 
     public function add(Request $request, $productId)
     {
-        $product = Product::findOrFail($productId);
-
         if (Auth::check()) {
             $userId = Auth::id();
             $cart = Cart::with('items.product')->where('user_id', $userId)->first();

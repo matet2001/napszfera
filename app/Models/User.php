@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cart::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->is_admin; // Make sure this column exists in the DB
+    }
 }
