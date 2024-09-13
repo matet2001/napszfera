@@ -9,19 +9,20 @@
             </a>
         </div>
         <div class="hidden lg:flex items-center space-x-6">
-            <x-nav-link href="/termekek/eloadasok" :active="request()->is('termekek/eloadasok')">ELŐADÁSOK</x-nav-link>
-            <x-nav-link href="/termekek/meditaciok" :active="request()->is('termekek/meditaciok')">MEDITÁCIÓK</x-nav-link>
-            <x-nav-link href="/termekek/hangoskonyvek" :active="request()->is('termekek/hangoskonyvek')">HANGOSKÖNYVEK</x-nav-link>
+            <x-nav-link href="{{ route('products.lecture') }}" :active="request()->routeIs('products.lecture')">ELŐADÁSOK</x-nav-link>
+            <x-nav-link href="{{ route('products.meditation') }}" :active="request()->routeIs('products.meditation')">MEDITÁCIÓK</x-nav-link>
+            <x-nav-link href="{{ route('products.audiobook') }}" :active="request()->routeIs('products.audiobook')">HANGOSKÖNYVEK</x-nav-link>
+
         </div>
         <div class="hidden lg:flex ">
             @guest()
-                <x-nav-link href="/login" :active="request()->is('login')">Bejelentkezés</x-nav-link>
-                <x-nav-link href="/register" :active="request()->is('register')">Regisztráció</x-nav-link>
+                <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">Bejelentkezés</x-nav-link>
+                <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">Regisztráció</x-nav-link>
             @endguest
 
             @auth()
-                <x-nav-link href="/profile" :active="request()->is('profile')">Profilom</x-nav-link>
-                <form method="POST" action="/logout">
+                <x-nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">Profilom</x-nav-link>
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-primary-button>Kijelentkezés</x-primary-button>
                 </form>
@@ -78,23 +79,22 @@
                                         </svg>
                                     </button>
                                     <div class="mt-2 space-y-2 hidden" id="disclosure-1">
-                                        <a href="/termekek/eloadasok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
-                                        <a href="/termekek/meditaciok" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
-                                        <a href="/termekek/hangoskonyvek" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
+                                        <a href="{{ route('products.lecture') }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
+                                        <a href="{{ route('products.meditation') }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
+                                        <a href="{{ route('products.audiobook') }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
                                     </div>
+                                    <a href="{{ route('contact') }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Kapcsolat</a>
+                                    <a href="{{ route('about') }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Rólam</a>
                                 </div>
-                                <a href="/contact" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Kapcsolat</a>
-                                <a href="/about" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Rólam</a>
-                            </div>
                             <div class="py-6">
                                 @guest()
-                                    <x-nav-link href="/login" :active="request()->is('login')">Bejelentkezés</x-nav-link>
-                                    <x-nav-link href="/register" :active="request()->is('register')">Regisztráció</x-nav-link>
+                                    <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">Bejelentkezés</x-nav-link>
+                                    <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">Regisztráció</x-nav-link>
                                 @endguest
 
                                 @auth()
-                                    <x-nav-link href="/profile" :active="request()->is('profile')">Profilom</x-nav-link>
-                                    <form method="POST" action="/logout">
+                                    <x-nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">Profilom</x-nav-link>
+                                    <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <x-primary-button>Kijelentkezés</x-primary-button>
                                     </form>

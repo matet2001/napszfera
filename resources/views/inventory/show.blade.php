@@ -10,50 +10,7 @@
                 </div>
                 <div class="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0">
                     <div class="data w-full max-w-xl">
-                        <nav aria-label="Breadcrumb">
-                            <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 lg:max-w-7xl mb-5 text-primary">
-                                <li>
-                                    <div class="flex items-center">
-                                        <a href="/termekek" class="mr-2 text-sm font-medium hover:text-gray-600">Termékek</a>
-                                        <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-                                            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                                        </svg>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flex items-center">
-                                        @php
-                                            switch ($product->type) {
-                                                case 'meditation':
-                                                $translatedType = 'Meditációk';
-                                                $translatedPath = 'meditaciok';
-                                                break;
-                                            case 'audiobook':
-                                                $translatedType = 'Hangoskönyvek';
-                                                $translatedPath = 'hangoskonyvek';
-                                                break;
-                                            case 'lecture':
-                                                $translatedType = 'Előadások';
-                                                $translatedPath = 'eloadasok';
-                                                break;
-                                            default:
-                                                $translatedType = $product->type;
-                                                $translatedPath = 'eloadasok';
-                                                break;
-                                            }
-                                        @endphp
-                                        <a href="/termekek/{{ $translatedPath }}" class="mr-2 text-sm font-medium hover:text-gray-600">{{ $translatedType }}</a>
-                                        <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-                                            <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                                        </svg>
-                                    </div>
-                                </li>
-
-                                <li class="text-sm">
-                                    <p class="font-medium">{{ $product->name }}</p>
-                                </li>
-                            </ol>
-                        </nav>
+                        <x-product.breadcrumb :$product />
                         <h2 class="font-bold text-3xl leading-10 mb-2 capitalize text-white">
                             {{ $product->name }}
                         </h2>

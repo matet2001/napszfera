@@ -4,11 +4,12 @@
             <h4 class="font-semibold text-lg mb-6">Cég</h4>
             <ul class="space-y-5">
                 <li>
-                    <x-nav-link href="/contact" :active="request()->is('contact')">Kapcsolat</x-nav-link>
+                    <x-nav-link href="{{ route('contact') }}" :active="request()->routeIs('contact')">Kapcsolat</x-nav-link>
                 </li>
                 <li>
-                    <x-nav-link href="/about" :active="request()->is('about')">Rólam</x-nav-link>
+                    <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">Rólam</x-nav-link>
                 </li>
+
             </ul>
         </div>
         <div class="col-span-2">
@@ -33,17 +34,13 @@
         <div class="col-span-2">
             <h4 class="font-semibold text-lg mb-6">Legal</h4>
             <ul class="space-y-5">
-                <li><x-nav-link href="/privacy" :active="request()->is('privacy')">Adatkezelési Tájékoztató</x-nav-link></li>
-                <li><x-nav-link href="/claim" :active="request()->is('claim')">Jogi Nyilatkozat</x-nav-link></li>
-                <li><x-nav-link href="/terms" :active="request()->is('terms')">Általános Szerződési Feltételek</x-nav-link></li>
+                <li><x-nav-link href="{{ route('privacy') }}" :active="request()->routeIs('privacy')">Adatkezelési Tájékoztató</x-nav-link></li>
+                <li><x-nav-link href="{{ route('claim') }}" :active="request()->routeIs('claim')">Jogi Nyilatkozat</x-nav-link></li>
+                <li><x-nav-link href="{{ route('terms') }}" :active="request()->routeIs('terms')">Általános Szerződési Feltételek</x-nav-link></li>
+
             </ul>
         </div>
 
-{{--        <div class="flex items-center lg:justify-center">--}}
-{{--            <a href="/">--}}
-{{--                <x-application-logo class="h-20 w-20"/>--}}
-{{--            </a>--}}
-{{--        </div>--}}
     </div>
 
     <hr class="my-8 border-gray-600" />

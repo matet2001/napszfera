@@ -13,20 +13,21 @@ use App\Http\Controllers\{
 
 // Public routes
 Route::get('/', [ProductsRouteController::class, 'index'])->name('home');
-Route::get('/termekek', [ProductsRouteController::class, 'index'])->name('products.index');
-Route::get('/termekek/eloadasok', [ProductsRouteController::class, 'lecture']);
-Route::get('/termekek/meditaciok', [ProductsRouteController::class, 'meditation']);
-Route::get('/termekek/hangoskonyvek', [ProductsRouteController::class, 'audiobook']);
-Route::get('/termekek/{product}', [ProductsRouteController::class, 'show']);
+Route::get('/products', [ProductsRouteController::class, 'index'])->name('products.index');
+Route::get('/products/lecture', [ProductsRouteController::class, 'lecture'])->name('products.lecture');
+Route::get('/products/meditation', [ProductsRouteController::class, 'meditation'])->name('products.meditation');
+Route::get('/products/audiobook', [ProductsRouteController::class, 'audiobook'])->name('products.audiobook');
+Route::get('/products/{product}', [ProductsRouteController::class, 'show'])->name('products.show');
 
-Route::get('/search', [ProductsRouteController::class, 'search']);
+// Search route
+Route::get('/search', [ProductsRouteController::class, 'search'])->name('search');
 
 // Static pages
-Route::get('/terms', [StaticPageController::class, 'terms']);
-Route::get('/privacy', [StaticPageController::class, 'privacy']);
-Route::get('/claim', [StaticPageController::class, 'claim']);
+Route::get('/terms', [StaticPageController::class, 'terms'])->name('terms');
+Route::get('/privacy', [StaticPageController::class, 'privacy'])->name('privacy');
+Route::get('/claim', [StaticPageController::class, 'claim'])->name('claim');
 Route::get('/contact', [StaticPageController::class, 'contact'])->name('contact');
-Route::get('/about', [StaticPageController::class, 'about']);
+Route::get('/about', [StaticPageController::class, 'about'])->name('about');
 
 // for logged-in users only
 Route::middleware('auth')->group(function () {
@@ -46,14 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 
     // Inventory routes
-    Route::get('/termekeim', [InventoryController::class, 'index'])->name('inventory.index');
-    Route::get('/termekeim/{product}', [InventoryController::class, 'show'])->name('inventory.show');
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+    Route::get('/inventory/{product}', [InventoryController::class, 'show'])->name('inventory.show');
 });
 
 // Product upload routes (admin only)
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/feltoltes', [ProductController::class, 'create'])->name('products.create');
-    Route::post('/feltoltes', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/upload', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/upload', [ProductController::class, 'store'])->name('products.store');
 });
 
 
