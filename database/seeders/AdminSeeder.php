@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AdminSeeder extends Seeder
 {
@@ -12,11 +12,10 @@ class AdminSeeder extends Seeder
     {
         // Create an admin user
         User::create([
-            'name' => 'Admin',
-            'email' => 'napszfera@gmail.com',
-            'phone' => 0000000,
-            //TODO change this to secure
-            'password' => Hash::make('CsanadMateGyuri2024'), // Change this to a secure password
+            'name' => env('ADMIN_NAME', 'Admin'), // Fallback to 'Admin' if not set
+            'email' => env('ADMIN_EMAIL'),
+            'phone' => env('ADMIN_PHONE'),
+            'password' => Hash::make(env('ADMIN_PASSWORD')), // Hash the password from the env file
             'is_admin' => true, // Set admin status
         ]);
     }

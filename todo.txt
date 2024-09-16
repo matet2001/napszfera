@@ -1,9 +1,9 @@
--mobile view has cart, mobil menu contains every route
-
 -Make előadások and hangöskonyvek products with multiply audio files, and a menu for them to lesson
 
 -Send email to verify, and when buying a product
 -Research stripe billing, szamlazz.hu and otp sending
+
+-make blog page, and admin post page with youtube link possibles
 
 -prevent hackers from downloading files from url
 -make upload work
