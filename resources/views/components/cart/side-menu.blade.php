@@ -115,6 +115,13 @@
             if (continueShoppingButton) {
                 continueShoppingButton.addEventListener('click', closePanel);
             }
+
+            // Add event listener to the cart button in mobile view
+            const openPanelMobileButton = document.getElementById('open-panel-mobile');
+
+            if (openPanelMobileButton) {
+                openPanelMobileButton.addEventListener('click', openPanel);
+            }
         });
     </script>
 </div>

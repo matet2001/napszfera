@@ -1,14 +1,11 @@
--kapcsolodó termékek try to exclude the detailed product, products which are in the cart, the inventory, if there is non, there is no such section
 -nav bar update, profile view include inventory and change profile routes
 -add profil page, with a link to inventory, and change profile
-
 -mobile view has cart, mobil menu contains every route
 
+-Make előadások and hangöskonyvek products with multiply audio files, and a menu for them to lesson
+
 -Send email to verify, and when buying a product
+-Research stripe billing, szamlazz.hu and otp sending
 
 -prevent hackers from downloading files from url
 -make upload work
-
-
-
--Research stripe billing, szamlazz.hu and otp sending
