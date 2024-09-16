@@ -1,4 +1,4 @@
-@props(['cart', 'randomProducts'])
+@props(['cart', 'relatedProducts'])
 <x-app-layout>
     <div class="p-4 sm:p-10">
         <h1 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-9">Kosár tartalma</h1>
@@ -41,21 +41,19 @@
                 </div>
                 <form action="{{ route('cart.checkout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="mt-4 sm:mt-6 block w-full rounded-md bg-primary px-5 py-2.5 text-center text-sm font-medium hover:bg-accent hover:text-black focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-500">
+                    <button type="submit"
+                            class="mt-4 sm:mt-6 block w-full rounded-md px-5 py-2.5 text-center text-sm font-medium transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-blue-300
+                            {{ !$cart || $cart->items->count() === 0 ? 'bg-background cursor-not-allowed text-gray-600' : 'bg-primary hover:bg-accent hover:text-black' }}"
+                            @if(!$cart || $cart->items->count() === 0) disabled @endif>
                         Fizetés
                     </button>
                 </form>
+
+
             </div>
         </div>
 
         <!-- You May Also Like Section -->
-        <div class="mt-20">
-            <h1 class="text-xl sm:text-2xl my-6 sm:my-10 text-white">Kapcsolódó Termékek</h1>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-10">
-                @foreach($randomProducts as $product)
-                    <x-product.card :product="$product"/>
-                @endforeach
-            </div>
-        </div>
+        <x-related-products :$relatedProducts />
     </div>
 </x-app-layout>

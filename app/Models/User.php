@@ -60,9 +60,20 @@ class User extends Authenticatable
         })->where('product_id', $productId)->exists();
     }
 
+    /**
+     * A user has one cart.
+     */
     public function cart()
     {
         return $this->hasOne(Cart::class);
+    }
+
+    /**
+     * A user has one inventory.
+     */
+    public function inventory()
+    {
+        return $this->hasOne(Inventory::class);
     }
 
     public function isAdmin()

@@ -27,13 +27,8 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-20 border-t border-t-gray-600">
-                <h1 class="text-2xl my-10 text-white">Kapcsolodó Termékek</h1>
-                <div class="grid grid-cols-1 lg:grid-cols-4 mx-auto gap-10">
-                    @foreach($relatedProducts as $currentProduct)
-                        <x-product.card :product="$currentProduct" />
-                    @endforeach
-                </div>
+            <div class="mt-10 border-t border-t-gray-600">
+                <x-related-products :$relatedProducts />
             </div>
         </div>
     </section>

@@ -1,15 +1,14 @@
--kapcsolat and bemutatkozas static page
-
+-kapcsolodó termékek try to exclude the detailed product, products which are in the cart, the inventory, if there is non, there is no such section
 -nav bar update, profile view include inventory and change profile routes
 -add profil page, with a link to inventory, and change profile
 
 -mobile view has cart, mobil menu contains every route
 
--prevent hackers from downloading files from url
+-Send email to verify, and when buying a product
 
--remove capital words in certain places
+-prevent hackers from downloading files from url
 -make upload work
--kapcsolodó termékek try to exclude the detailed product, products which are in the cart, the inventory, if there is non, there is no such section
+
+
 
 -Research stripe billing, szamlazz.hu and otp sending
--Send email to verify, and when buying a product

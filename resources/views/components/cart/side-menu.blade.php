@@ -53,7 +53,7 @@
                             </div>
                             <p class="mt-0.5 text-sm text-gray-500">Kedvezmények és adók számítása a fizetésnél</p>
                             <div class="mt-6">
-                                <a href="/cart"
+                                <a href="{{ route('cart.index') }}"
                                    class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
                                     Fizetés
                                 </a>

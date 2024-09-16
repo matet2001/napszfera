@@ -23,7 +23,7 @@
                 <div
                     class="col-span-2 data w-full sm:pr-4 pr-0 justify-start flex flex-col sm:items-start items-center max-lg:pb-2">
                     <div class="data w-full max-w-xl text-left ml-3">
-                        <a href="/termekek/{{ $product->product_id }}">
+                        <a href="{{ route('products.show', ['product' => $product->product_id]) }}">
                             <h2 class="text-lg sm:text-xl leading-8 capitalize text-white">
                                 {{ $product->name }}
                             </h2>

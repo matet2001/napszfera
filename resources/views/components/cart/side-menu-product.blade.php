@@ -13,7 +13,7 @@
             <div class="flex-1">
                 <h3 class="text-black text-base font-medium">
                     <!-- Link to product detail page -->
-                    <a href="/termekek/{{ $product->product_id }}">{{ $product->name }}</a>
+                    <a href="{{ route('products.show', ['product' => $product->product_id]) }}">{{ $product->name }}</a>
                 </h3>
                 <!-- Product description -->
                 <p class="mt-1 text-sm text-gray-500">{{ $product->description ?? '' }}</p>

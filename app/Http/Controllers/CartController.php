@@ -15,12 +15,11 @@ class CartController extends Controller
     {
         $cart = $this->getCart();
 
-        // Get 4 random products
-        $randomProducts = Product::inRandomOrder()->take(4)->get();
+        $relatedProducts = $this->getRandomProducts();
 
         return view('cart.index', [
             'cart' => $cart,
-            'randomProducts' => $randomProducts,
+            'relatedProducts' => $relatedProducts,
         ]);
     }
 
@@ -136,6 +135,32 @@ class CartController extends Controller
         }
 
         return redirect()->route('cart.index');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRandomProducts()
+    {
+        if (Auth::check()) {
+            $user = auth()->user(); // Get the authenticated user
+
+            // Get product IDs in the user's cart
+            $cartProductIds = $user->cart ? $user->cart->items->pluck('product_id')->toArray() : [];
+
+            // Get product IDs in the user's inventory
+            $inventoryProductIds = $user->inventory ? $user->inventory->items->pluck('product_id')->toArray() : [];
+
+            // Combine cart and inventory product IDs into one array for exclusion
+            $excludedProductIds = array_merge($cartProductIds, $inventoryProductIds);
+
+            // Query for related products, excluding the current product and those in cart/inventory
+            return Product::whereNotIn('id', $excludedProductIds) // Exclude products in cart/inventory
+            ->take(4)
+                ->get();
+        } else {
+            return Product::inRandomOrder()->take(4)->get();
+        }
     }
 }
 
