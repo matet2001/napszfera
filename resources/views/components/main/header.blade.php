@@ -21,7 +21,7 @@
         </div>
 
         <!-- Desktop Navigation Links and Actions -->
-        <div class="hidden lg:flex items-center space-x-6">
+        <div class="hidden lg:flex items-center space-x-5">
 
             @auth
                 <!-- Cart Icon -->
@@ -49,6 +49,10 @@
                     </div>
                 </div>
             @endauth
+
+            @guest()
+                <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">Bejelentkezés</x-nav-link>
+            @endguest
         </div>
 
         <!-- Mobile Menu Toggle Button -->
@@ -67,73 +71,9 @@
             </button>
         </div>
     </nav>
-
-
-
     <!-- Mobile Sidebar Menu -->
-    <div id="mobile-sidebar-panel" class="lg:hidden hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true">
-        <!-- Overlay Background -->
-        <div id="mobile-background-overlay" class="fixed inset-0 bg-black opacity-0 transition-opacity duration-500 ease-in-out"></div>
+    <x-mobile.side-panel />
 
-        <!-- Sidebar Content -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                <div id="mobile-sidebar-content" class="pointer-events-auto w-screen max-w-sm transform transition-transform duration-500 ease-in-out translate-x-full bg-white px-6 py-6">
-                    <div class="flex items-center justify-between">
-                        <a href="/">
-                            <x-application-logo class="h-10 w-10" />
-                        </a>
-                        <a href="/">
-                            <span class="font-semibold text-lg text-white">NAPSZFÉRA</span>
-                        </a>
-                        <button type="button" id="close-mobile-menu" class="-m-2.5 p-2.5 rounded-md">
-                            <span class="sr-only">Close menu</span>
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
 
-                    <!-- Mobile Navigation Links -->
-                    <div class="mt-6 flow-root">
-                        <div class="-my-6 divide-y divide-gray-500/10">
-                            <div class="space-y-2 py-6">
-                                <div class="-mx-3">
-                                    <button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50" aria-controls="mobile-disclosure-1" aria-expanded="false">
-                                        Termékek
-                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                    <div id="mobile-disclosure-1" class="mt-2 space-y-2 hidden">
-                                        <a href="{{ route('products.lecture') }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
-                                        <a href="{{ route('products.meditation') }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
-                                        <a href="{{ route('products.audiobook') }}" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
-                                    </div>
-                                    <a href="{{ route('contact') }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Kapcsolat</a>
-                                    <a href="{{ route('about') }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50">Rólam</a>
-                                </div>
-                            </div>
 
-                            <!-- Mobile Authentication Links -->
-                            <div class="py-6">
-                                @guest
-                                    <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">Bejelentkezés</x-nav-link>
-                                    <x-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">Regisztráció</x-nav-link>
-                                @endguest
-
-                                @auth
-                                    <x-nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">Profilom</x-nav-link>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <x-primary-button>Kijelentkezés</x-primary-button>
-                                    </form>
-                                @endauth
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </header>

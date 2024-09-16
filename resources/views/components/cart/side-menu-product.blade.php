@@ -3,7 +3,7 @@
 
 <li class="flex py-6">
     <!-- Product image container -->
-    <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+    <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-black">
         <x-product.image :$product />
     </div>
 

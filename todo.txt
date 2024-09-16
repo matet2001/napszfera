@@ -1,5 +1,3 @@
--nav bar update, profile view include inventory and change profile routes
--add profil page, with a link to inventory, and change profile
 -mobile view has cart, mobil menu contains every route
 
 -Make előadások and hangöskonyvek products with multiply audio files, and a menu for them to lesson
