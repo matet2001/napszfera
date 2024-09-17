@@ -64,28 +64,36 @@ class ProductSeeder extends Seeder
                 // Set the price based on the product type
                 $price = $prices[$type];
 
-                // Output details before creating the product
-                echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price\n";
+                // Count the number of MP3 files in the product directory
+                $mp3Files = array_filter(array_diff(scandir($productPath), ['..', '.']), function ($file) {
+                    return preg_match('/\.mp3$/i', $file);
+                });
+                $fileCount = count($mp3Files);
 
-                // Create the product with the price
+                // Set isSingle to true if only 1 MP3 file exists, otherwise false
+                $isMultiple = $fileCount > 1;
+
+                // Output details before creating the product
+                echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple\n";
+
+                // Create the product with the price and isSingle status
                 $product = Product::factory()->create([
                     'name' => $productName,
                     'image' => 'storage/products/' . $type . '/' . $productName . '/' . $imageFile, // Use the /storage path
                     'type' => $type,
                     'price' => $price, // Set the price based on the product type
+                    'isMultiple' => $isMultiple, // Set isSingle based on the file count
                 ]);
 
-                // Find all the mp3 files and create related File records
-                foreach (array_diff(scandir($productPath), ['..', '.']) as $file) {
-                    if (preg_match('/\.mp3$/i', $file)) {
-                        // Create the related file entry
-                        $product->files()->create([
-                            'title' => pathinfo($file, PATHINFO_FILENAME), // Use the filename as the title
-                            'file_path' => 'storage/products/' . $type . '/' . $productName . '/' . $file, // File path
-                        ]);
+                // Add MP3 files as related File records
+                foreach ($mp3Files as $file) {
+                    // Create the related file entry
+                    $product->files()->create([
+                        'title' => pathinfo($file, PATHINFO_FILENAME), // Use the filename as the title
+                        'file_path' => 'storage/products/' . $type . '/' . $productName . '/' . $file, // File path
+                    ]);
 
-                        echo "Added file: $file to product: $productName\n";
-                    }
+                    echo "Added file: $file to product: $productName\n";
                 }
 
                 echo "Product created successfully: $productName\n";

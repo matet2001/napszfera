@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);  // Price column suitable for HUF
             $table->string('image')->nullable();
             $table->enum('type', ['meditation', 'audiobook', 'lecture']);
+            $table->boolean('isMultiple')->default(false);
             $table->timestamps();
         });
     }

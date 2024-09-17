@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory;
+use App\Models\InventoryItem;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -44,7 +46,18 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Create the user's inventory
+        $inventory = Inventory::create([
+            'user_id' => $user->id,
+        ]);
 
+        // Free product logic
+        $freeProductId = 15;
+
+        InventoryItem::create([
+            'inventory_id' => $inventory->id,
+            'product_id' => $freeProductId,
+        ]);
 
         event(new Registered($user));
 

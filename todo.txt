@@ -1,4 +1,14 @@
+-add is single key to products, and use when displaying them
+-make izelítő előadás available for all users for free
+
+-Add description to audiobooks on seed
+-Add descrption option to audio files also
+
+-Save where the user left the lessoning of a audio, and what was the time, load it next time
+
+-Finish authetacion frontend, validation, and working
 -Send email to verify, and when buying a product
+
 -Research stripe billing, szamlazz.hu and otp sending
 
 -make blog page, and admin post page with youtube link possibles
