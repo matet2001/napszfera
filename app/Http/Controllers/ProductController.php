@@ -11,7 +11,7 @@ use Stripe\Stripe;
 class ProductController extends Controller
 {
     public function create() {
-        return view('products.create');
+        return view('product.create');
     }
     public function store(Request $request)
     {
@@ -54,7 +54,4 @@ class ProductController extends Controller
             return redirect()->route('checkout.cancel')->with('error', 'Payment creation failed: ' . $e->getMessage());
         }
     }
-
-
-
 }

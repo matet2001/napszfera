@@ -8,7 +8,7 @@
             <a href="{{ route('inventory.index') }}" class="mt-6 block w-full text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
                 Termékeim
             </a>
-            <a href="{{ route('products.index') }}" class="mt-6 block w-full text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+            <a href="{{ route('product.index') }}" class="mt-6 block w-full text-center bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
                 Vásárlás folytatása
             </a>
         </div>

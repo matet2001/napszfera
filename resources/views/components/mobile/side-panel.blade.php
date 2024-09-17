@@ -65,9 +65,9 @@
 
                 <!-- Mobile Navigation Links -->
                 <div class="space-y-4 my-8">
-                    <a href="{{ route('products.lecture') }}" class="block rounded-lg py-2 px-3 text-base font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
-                    <a href="{{ route('products.meditation') }}" class="block rounded-lg py-2 px-3 text-base font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
-                    <a href="{{ route('products.audiobook') }}" class="block rounded-lg py-2 px-3 text-base font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
+                    <a href="{{ route('product.lecture') }}" class="block rounded-lg py-2 px-3 text-base font-semibold leading-7 hover:bg-gray-50">ELŐADÁSOK</a>
+                    <a href="{{ route('product.meditation') }}" class="block rounded-lg py-2 px-3 text-base font-semibold leading-7 hover:bg-gray-50">MEDITÁCIÓK</a>
+                    <a href="{{ route('product.audiobook') }}" class="block rounded-lg py-2 px-3 text-base font-semibold leading-7 hover:bg-gray-50">HANGOSKÖNYVEK</a>
                 </div>
 
                 <!-- Bottom Links -->

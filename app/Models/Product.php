@@ -15,6 +15,10 @@ class Product extends Model
         'price',
         'image',
         'type',
-        'file_path'
     ];
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

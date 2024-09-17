@@ -13,11 +13,11 @@ use App\Http\Controllers\{
 
 // Public routes
 Route::get('/', [ProductsRouteController::class, 'index'])->name('home');
-Route::get('/products', [ProductsRouteController::class, 'index'])->name('products.index');
-Route::get('/products/lecture', [ProductsRouteController::class, 'lecture'])->name('products.lecture');
-Route::get('/products/meditation', [ProductsRouteController::class, 'meditation'])->name('products.meditation');
-Route::get('/products/audiobook', [ProductsRouteController::class, 'audiobook'])->name('products.audiobook');
-Route::get('/products/{product}', [ProductsRouteController::class, 'show'])->name('products.show');
+Route::get('/product', [ProductsRouteController::class, 'index'])->name('product.index');
+Route::get('/product/lecture', [ProductsRouteController::class, 'lecture'])->name('product.lecture');
+Route::get('/product/meditation', [ProductsRouteController::class, 'meditation'])->name('product.meditation');
+Route::get('/product/audiobook', [ProductsRouteController::class, 'audiobook'])->name('product.audiobook');
+Route::get('/product/{product}', [ProductsRouteController::class, 'show'])->name('product.show');
 
 // Search route
 Route::get('/search', [ProductsRouteController::class, 'search'])->name('search');
@@ -53,8 +53,8 @@ Route::middleware('auth')->group(function () {
 
 // Product upload routes (admin only)
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/upload', [ProductController::class, 'create'])->name('products.create');
-    Route::post('/upload', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/upload', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/upload', [ProductController::class, 'store'])->name('product.store');
 });
 
 

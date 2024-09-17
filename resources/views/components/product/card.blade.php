@@ -2,7 +2,7 @@
 
 <div class="relative mx-auto flex w-full max-w-sm flex-col overflow-hidden rounded-lg border border-gray-300 bg-white/10 shadow-md p-4">
     <!-- Product Image -->
-    <a class="relative mx-auto flex aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-xl" href="{{ route('products.show', ['product' => $product->id]) }}">
+    <a class="relative mx-auto flex aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-xl" href="{{ route('product.show', ['product' => $product->id]) }}">
         <x-product.image :$product />
     </a>
 
@@ -10,7 +10,7 @@
     <div class="flex flex-col h-full mt-4">
         <!-- Section 1: Product Name -->
         <div class="flex-grow flex items-center justify-center mb-2">
-            <a href="{{ route('products.show', ['product' => $product->id]) }}" class="w-full text-center">
+            <a href="{{ route('product.show', ['product' => $product->id]) }}" class="w-full text-center">
                 <h5 class="text-lg sm:text-xl leading-8 capitalize text-white font-semibold">{{ $product->name }}</h5>
             </a>
         </div>

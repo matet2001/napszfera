@@ -14,9 +14,9 @@
         </div>
 
         <div class="hidden lg:flex space-x-8 items-center">
-            <x-nav-link href="{{ route('products.lecture') }}" :active="request()->routeIs('products.lecture')">ELŐADÁSOK</x-nav-link>
-            <x-nav-link href="{{ route('products.meditation') }}" :active="request()->routeIs('products.meditation')">MEDITÁCIÓK</x-nav-link>
-            <x-nav-link href="{{ route('products.audiobook') }}" :active="request()->routeIs('products.audiobook')">HANGOSKÖNYVEK</x-nav-link>
+            <x-nav-link href="{{ route('product.lecture') }}" :active="request()->routeIs('product.lecture')">ELŐADÁSOK</x-nav-link>
+            <x-nav-link href="{{ route('product.meditation') }}" :active="request()->routeIs('product.meditation')">MEDITÁCIÓK</x-nav-link>
+            <x-nav-link href="{{ route('product.audiobook') }}" :active="request()->routeIs('product.audiobook')">HANGOSKÖNYVEK</x-nav-link>
 
         </div>
 

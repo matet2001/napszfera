@@ -14,7 +14,7 @@
             </div>
 
             <!-- Form -->
-            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Termék Neve -->
@@ -111,7 +111,7 @@
 {{--            };--}}
 
 {{--            // Open the request and send the FormData object--}}
-{{--            xhr.open('POST', "{{ route('products.store') }}", true);--}}
+{{--            xhr.open('POST', "{{ route('product.store') }}", true);--}}
 {{--            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('input[name=_token]').value);--}}
 
 {{--            // Send the FormData with the file and other form data--}}

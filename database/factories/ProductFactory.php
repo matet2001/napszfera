@@ -22,7 +22,6 @@ class ProductFactory extends Factory
             'price' => 1000,
             'image' => '',  // Will be set dynamically
             'type' => 'meditation',
-            'file_path' => '',  // Will be set dynamically
         ];
     }
 }

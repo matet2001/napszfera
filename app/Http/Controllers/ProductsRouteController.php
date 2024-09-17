@@ -13,37 +13,37 @@ class ProductsRouteController extends Controller
     public function index() {
         $productList = Product::simplePaginate($this->paginationAmount);
 
-        return view('products.index', [
+        return view('product.index', [
             'title' => 'Termékek',
             'productList' => $productList,
         ]);
     }
 
-    // Display all products of type 'lecture'
+    // Display all product of type 'lecture'
     public function lecture() {
         $productList = Product::where('type', 'lecture')->simplePaginate($this->paginationAmount);
 
-        return view('products.index', [
+        return view('product.index', [
             'title' => 'Előadások',
             'productList' => $productList,
         ]);
     }
 
-    // Display all products of type 'meditation'
+    // Display all product of type 'meditation'
     public function meditation() {
         $productList = Product::where('type', 'meditation')->simplePaginate($this->paginationAmount);
 
-        return view('products.index', [
+        return view('product.index', [
             'title' => 'Meditációk',
             'productList' => $productList,
         ]);
     }
 
-    // Display all products of type 'audiobook'
+    // Display all product of type 'audiobook'
     public function audiobook() {
         $productList = Product::where('type', 'audiobook')->simplePaginate($this->paginationAmount);
 
-        return view('products.index', [
+        return view('product.index', [
             'title' => 'Hangoskönyvek',
             'productList' => $productList,
         ]);
@@ -53,7 +53,7 @@ class ProductsRouteController extends Controller
 
         $relatedProducts = $this->getRelatedProducts($product);
 
-        return view('products.show', [
+        return view('product.show', [
             'product' => $product,
             'relatedProducts' => $relatedProducts,
         ]);
@@ -73,10 +73,10 @@ class ProductsRouteController extends Controller
             // Combine cart and inventory product IDs into one array for exclusion
             $excludedProductIds = array_merge($cartProductIds, $inventoryProductIds);
 
-            // Query for related products, excluding the current product and those in cart/inventory
+            // Query for related product, excluding the current product and those in cart/inventory
             return Product::where('type', $product->type)
                 ->where('id', '!=', $product->id) // Exclude the current product
-                ->whereNotIn('id', $excludedProductIds) // Exclude products in cart/inventory
+                ->whereNotIn('id', $excludedProductIds) // Exclude product in cart/inventory
                 ->take(4)
                 ->get();
         } else {
@@ -92,12 +92,12 @@ class ProductsRouteController extends Controller
         // Get the search query (if any)
         $query = request('q');
 
-        // Query the products and paginate the results
+        // Query the product and paginate the results
         $productList = Product::query()
             ->where('name', 'LIKE', '%' . $query . '%')
             ->simplePaginate($this->paginationAmount);
 
-        return view('products.index', [
+        return view('product.index', [
             'title' => 'Eredmények',
             'productList' => $productList,
             'query' => $query,  // Passing the query back for the search input

@@ -15,7 +15,7 @@
                 </form>
 
                 <!-- Continue Shopping Button -->
-                <a href="{{ route('products.index') }}" class="sm:mt-6 block w-full rounded-md text-white bg-primary px-5 py-2.5 text-center text-sm font-medium hover:bg-accent hover:text-black focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-500">
+                <a href="{{ route('product.index') }}" class="sm:mt-6 block w-full rounded-md text-white bg-primary px-5 py-2.5 text-center text-sm font-medium hover:bg-accent hover:text-black focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-500">
                     Vásárlás folytatása
                 </a>
 

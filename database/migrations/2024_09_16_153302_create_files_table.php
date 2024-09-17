@@ -11,22 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->decimal('price', 8, 2);  // Price column suitable for HUF
-            $table->string('image')->nullable();
-            $table->enum('type', ['meditation', 'audiobook', 'lecture']);
+            $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Foreign key to product table
+            $table->string('title');
+            $table->string('file_path');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('product');
+        Schema::dropIfExists('files');
     }
 };

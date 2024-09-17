@@ -25,8 +25,11 @@ class InventoryController extends Controller
     public function show(Product $product) {
 
         if (Auth::check()) {
+            $files = $product->files()->simplePaginate(1);
+
             return view('inventory.show', [
-                'product' => $product
+                'product' => $product,
+                'files' => $files
             ]);
         }
 

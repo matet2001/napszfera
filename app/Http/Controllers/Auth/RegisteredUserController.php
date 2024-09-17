@@ -51,6 +51,6 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         Log::info('Register was succesfull');
 
-        return redirect(route('products.index', absolute: false));
+        return redirect(route('product.index', absolute: false));
     }
 }

@@ -10,7 +10,6 @@
                      class="pointer-events-auto w-screen max-w-xl transform transition-transform duration-500 ease-in-out translate-x-full">
                     <div class="flex h-full flex-col bg-accent shadow-xl">
                         <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-
                             <div class="flex items-start justify-between">
                                 <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Bevásárló Kosár</h2>
                                 <div class="ml-3 flex h-7 items-center">

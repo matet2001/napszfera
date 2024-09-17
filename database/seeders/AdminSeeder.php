@@ -10,14 +10,23 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create an admin user
+        $adminName = env('ADMIN_NAME', 'Admin');
+        $adminEmail = env('ADMIN_EMAIL');
+        $adminPhone = env('ADMIN_PHONE', 'N/A');
+        $adminPassword = env('ADMIN_PASSWORD', 'defaultpassword');
+
+        // Output for debugging
+        echo "Creating admin user with email: $adminName\n $adminEmail\n $adminPhone\n $adminPassword\n";
+
+        // Create the admin user
         User::create([
-            'name' => env('ADMIN_NAME', 'Admin'), // Fallback to 'Admin' if not set
-            'email' => env('ADMIN_EMAIL'),
-            'phone' => env('ADMIN_PHONE'),
-            'password' => Hash::make(env('ADMIN_PASSWORD')), // Hash the password from the env file
-            'is_admin' => true, // Set admin status
+            'name' => $adminName,
+            'email' => $adminEmail,
+            'phone' => $adminPhone,
+            'password' => Hash::make($adminPassword),
+            'is_admin' => true,
         ]);
     }
+
 }
 

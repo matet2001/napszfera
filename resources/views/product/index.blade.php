@@ -10,6 +10,7 @@
                     <x-product.card :$product />
                 @endforeach
             </div>
+
             <div class="my-10">
                 {{ $productList->appends(['q' => request('q')])->links() }} <!-- Pagination links -->
             </div>

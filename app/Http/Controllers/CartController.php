@@ -154,8 +154,8 @@ class CartController extends Controller
             // Combine cart and inventory product IDs into one array for exclusion
             $excludedProductIds = array_merge($cartProductIds, $inventoryProductIds);
 
-            // Query for related products, excluding the current product and those in cart/inventory
-            return Product::whereNotIn('id', $excludedProductIds) // Exclude products in cart/inventory
+            // Query for related product, excluding the current product and those in cart/inventory
+            return Product::whereNotIn('id', $excludedProductIds) // Exclude product in cart/inventory
             ->take(4)
                 ->get();
         } else {
