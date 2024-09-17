@@ -35,7 +35,7 @@
                                             @endforeach
                                         </ul>
                                     @else
-                                        <p>A kosarad üres.</p>
+                                        <p class="text-black">A kosarad üres.</p>
                                     @endif
                                 </div>
                             </div>

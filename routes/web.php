@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{
-    CartController,
+use App\Http\Controllers\{CartController,
     CheckoutController,
+    FileProgressController,
     InventoryController,
     ProductController,
     ProductsRouteController,
     ProfileController,
-    StaticPageController
-};
+    StaticPageController};
 
 // Public routes
 Route::get('/', [ProductsRouteController::class, 'index'])->name('home');
@@ -49,6 +48,8 @@ Route::middleware('auth')->group(function () {
     // Inventory routes
     Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
     Route::get('/inventory/{product}', [InventoryController::class, 'show'])->name('inventory.show');
+
+    Route::post('/file-progress/{product_id}/{file_id}', [FileProgressController::class, 'update'])->name('file.progress.update');
 });
 
 // Product upload routes (admin only)

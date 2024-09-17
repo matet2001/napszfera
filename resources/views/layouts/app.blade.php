@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Napszfera</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="icon" type="image/x-icon" href="{{ Vite::asset('resources/images/logo2.svg') }}">
+        <link rel="icon" type="image/x-icon" href="{{ Vite::asset('resources/images/logo_nyev2.svg') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

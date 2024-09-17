@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\UserFileProgress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,11 +26,24 @@ class InventoryController extends Controller
     public function show(Product $product) {
 
         if (Auth::check()) {
-            $files = $product->files()->simplePaginate(1);
+            $progress = UserFileProgress::where('user_id', Auth::id())
+                ->where('product_id', $product->id)
+                ->first();
+
+            $currentPage = 1;
+
+            if ($progress) {
+                $currentPage = $progress->page_number ? : 1; // Use page number from progress or default to 1
+            }
+
+            $filesQuery = $product->files();
+            $files = $filesQuery->simplePaginate(1);
+
 
             return view('inventory.show', [
                 'product' => $product,
-                'files' => $files
+                'files' => $files,
+                'progress' => $progress
             ]);
         }
 

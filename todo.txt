@@ -1,5 +1,5 @@
--add is single key to products, and use when displaying them
--make izelítő előadás available for all users for free
+-add is single key to products, and use when displaying them x
+-make izelítő előadás available for all users for free x
 
 -Add description to audiobooks on seed
 -Add descrption option to audio files also
