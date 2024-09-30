@@ -28,9 +28,9 @@
 
                         <div class="w-full max-w-lg flex flex-col justify-center mt-20">
                             <div class="border border-transparent bg-accent rounded-3xl flex flex-col items-center justify-center p-5">
-                                @if($product->isMultiple)
+{{--                                @if($product->isMultiple)--}}
                                     <h2 id="fileTitle" class="text-2xl font-bold mb-2 text-black text-center">{{ $firstFile->title }}</h2>
-                                @endif
+{{--                                @endif--}}
 
                                 <form id="progressForm" action="{{ route('file.progress.update', ['product_id' => $product->id, 'file_id' => $firstFile->id]) }}" method="POST" style="display: none;">
                                     @csrf

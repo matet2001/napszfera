@@ -35,26 +35,18 @@
                 <!-- Password -->
                 <div class="mt-4">
                     <x-input-label for="password" :value="__('Jelszó')" />
-
-                    <x-text-input id="password" class="block mt-1 w-full"
-                                  type="password"
-                                  name="password"
-                                  required autocomplete="new-password" />
-
+                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
                 <!-- Confirm Password -->
                 <div class="mt-4">
                     <x-input-label for="password_confirmation" :value="__('Jelszó Megerősítése')" />
-
-                    <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                  type="password"
-                                  name="password_confirmation" required autocomplete="new-password" />
-
+                    <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
 
+                <!-- Terms and Conditions Checkbox -->
                 <div class="flex items-center space-x-2">
                     <input id="checkbox" type="checkbox" class="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" required>
                     <label for="checkbox" class="text-sm font-medium">
@@ -62,13 +54,14 @@
                     </label>
                 </div>
 
+                <!-- Submit Button -->
                 <div class="flex items-center justify-end mt-14" style="margin-top: 3rem;">
                     <button type="submit" class="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Regisztráció
                     </button>
                 </div>
-
             </form>
+
             <p class="mt-10 text-center text-sm">
                 Van már profilod?
                 <a href="{{ route('login') }}" class="font-semibold leading-6 hover:text-primary">Jelentkezz be!</a>

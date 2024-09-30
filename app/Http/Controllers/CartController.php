@@ -94,7 +94,6 @@ class CartController extends Controller
                         'unit_amount' => $item->product->price * 100, // in cents
                     ],
                     'quantity' => 1,
-                    // Add tax rates if applicable
                 ];
             }
 

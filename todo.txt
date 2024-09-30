@@ -1,17 +1,18 @@
--add is single key to products, and use when displaying them x
--make izelítő előadás available for all users for free x
+- Finish authetacion frontend, validation, and working
+- make blog page, and admin post page with youtube link possibles
+- boritóképek látszodjanak teljesen, akkor is ha kell össze kell nyomni
 
--Add description to audiobooks on seed
--Add descrption option to audio files also
+- izelítőket lehesse meghallgatni a termék oldalán
+- le lehessen letölteni a termék mappákat
 
--Save where the user left the lessoning of a audio, and what was the time, load it next time
+- make upload work
+- Save where the user left the lessoning of a audio, and what was the time, load it next time
+- Switch to simple pay and szamlazz.hu
+- jogi és ászf legyen elfogadtatva fizetés elött
+- fájl feltöltésnél lehessen többet feltölteni
 
--Finish authetacion frontend, validation, and working
--Send email to verify, and when buying a product
+- Add description to audiobooks on seed
+- Add descrption option to audio files also
 
--Research stripe billing, szamlazz.hu and otp sending
-
--make blog page, and admin post page with youtube link possibles
-
--prevent hackers from downloading files from url
--make upload work
+- Send email to verify, and when buying a product
+- Deploy page

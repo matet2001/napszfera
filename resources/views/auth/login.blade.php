@@ -14,8 +14,11 @@
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6">Email cím</label>
                     <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="{{ old('email') }}">
                     </div>
+{{--                    @error('email')--}}
+{{--                    <span class="text-sm text-red-600">{{ $message }}</span>--}}
+{{--                    @enderror--}}
                 </div>
 
                 <div>
@@ -28,16 +31,30 @@
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
+                    @error('password')
+                    <span class="text-sm text-red-600">{{ $message }}</span>
+                    @enderror
                 </div>
 
-                <div class="mt-6"> <!-- Added margin-top here -->
+                <div class="mt-6">
                     <button type="submit" class="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Bejelentkezés
                     </button>
                 </div>
+
+                <!-- General error message if any -->
+                @if ($errors->any())
+                    <div class="mt-4 text-red-600">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </form>
 
-            <p class="mt-10 text-center text-sm">
+        <p class="mt-10 text-center text-sm">
                 Nincs még profilod?
                 <a href="/register" class="font-semibold leading-6 hover:text-primary">Regisztrálj!</a>
             </p>
