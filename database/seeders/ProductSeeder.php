@@ -80,7 +80,32 @@ class ProductSeeder extends Seeder
                 // Output details before creating the product
                 echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple, isImageStand = $isImageStand\n";
 
-                // Create the product with the price, isSingle status, and isImageStand
+                // Check for a description.txt file in the product directory
+                $descriptionFilePath = $productPath . '/description.txt';
+                $description = null;
+
+                if (file_exists($descriptionFilePath)) {
+
+                    $f = fopen($descriptionFilePath, 'r');
+                    $description = fread($f, filesize($descriptionFilePath)); // Read the content of the description file
+
+                    // Trim the description to remove any extra whitespace
+//                    $description = trim($description);
+
+                    // Debugging: Output the description length and content for verification
+                    if (empty($description)) {
+                        echo "Description file is empty for product: $productName in $productPath\n";
+                    } else {
+                        echo "Read description for product: $productName, length: " . strlen($description) . " characters\n";
+                    }
+                } else {
+                    echo "No description file found for product: $productName in $productPath\n";
+                }
+
+// Output details before creating the product
+                echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple, isImageStand = $isImageStand\n";
+
+// Create the product with the price, isSingle status, isImageStand, and description
                 $product = Product::factory()->create([
                     'name' => $productName,
                     'image' => 'storage/products/' . $type . '/' . $productName . '/' . $imageFile, // Use the /storage path
@@ -88,7 +113,9 @@ class ProductSeeder extends Seeder
                     'price' => $price, // Set the price based on the product type
                     'isMultiple' => $isMultiple, // Set isMultiple based on the file count
                     'isImageStand' => $isImageStand, // Set isImageStand based on the product type
+                    'description' => $description, // Set the description if available
                 ]);
+
 
                 // Add MP3 files as related File records
                 foreach ($mp3Files as $file) {
