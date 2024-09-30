@@ -14,7 +14,9 @@ class Product extends Model
         'description',
         'price',
         'image',
+        'isImageStand',
         'type',
+        'isMultiple'
     ];
 
     public function files()

@@ -70,34 +70,44 @@ class ProductSeeder extends Seeder
                 });
                 $fileCount = count($mp3Files);
 
-                // Set isSingle to true if only 1 MP3 file exists, otherwise false
+                // Set isMultiple to true if more than 1 MP3 file exists, otherwise false
                 $isMultiple = $fileCount > 1;
 
-                // Output details before creating the product
-                echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple\n";
+                // Determine if the product is an audiobook to set isImageStand
+                $isImageStand = $type === 'audiobook';
 
-                // Create the product with the price and isSingle status
+                // Output details before creating the product
+                echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple, isImageStand = $isImageStand\n";
+
+                // Create the product with the price, isSingle status, and isImageStand
                 $product = Product::factory()->create([
                     'name' => $productName,
                     'image' => 'storage/products/' . $type . '/' . $productName . '/' . $imageFile, // Use the /storage path
                     'type' => $type,
                     'price' => $price, // Set the price based on the product type
-                    'isMultiple' => $isMultiple, // Set isSingle based on the file count
+                    'isMultiple' => $isMultiple, // Set isMultiple based on the file count
+                    'isImageStand' => $isImageStand, // Set isImageStand based on the product type
                 ]);
 
                 // Add MP3 files as related File records
                 foreach ($mp3Files as $file) {
+                    // Check if the file name contains 'sample'
+                    $isSample = stripos($file, 'sample') !== false; // Case-insensitive check for 'sample'
+
                     // Create the related file entry
                     $product->files()->create([
                         'title' => pathinfo($file, PATHINFO_FILENAME), // Use the filename as the title
                         'file_path' => 'storage/products/' . $type . '/' . $productName . '/' . $file, // File path
+                        'isSample' => $isSample, // Set isSample based on whether 'sample' is in the file name
                     ]);
 
-                    echo "Added file: $file to product: $productName\n";
+                    echo "Added file: $file to product: $productName, isSample: $isSample\n";
                 }
+
 
                 echo "Product created successfully: $productName\n";
             }
+
         }
     }
 }
