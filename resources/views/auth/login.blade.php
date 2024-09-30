@@ -1,5 +1,19 @@
+<style>
+    input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .password-toggle-icon {
+        cursor: pointer;
+    }
+
+</style>
+
 <x-layouts.guest>
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="flex min-h-full flex-col justify-center px-6  lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <a href="/" class="flex items-center justify-center">
                 <x-application-logo class="h-20 w-20"/>
@@ -11,29 +25,28 @@
             <form class="space-y-6" action="/login" method="POST">
                 @csrf
 
-                <div>
-                    <label for="email" class="block text-sm font-medium leading-6">Email cím</label>
-                    <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="{{ old('email') }}">
-                    </div>
-{{--                    @error('email')--}}
-{{--                    <span class="text-sm text-red-600">{{ $message }}</span>--}}
-{{--                    @enderror--}}
+                <div class="mt-4">
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
-                <div>
-                    <div class="flex items-center justify-between">
-                        <label for="password" class="block text-sm font-medium leading-6">Jelszó</label>
-                        <div class="text-sm">
-                            <a href="/forgot-password" class="font-semibold hover:text-primary">Elfelejtetted a jelszavad?</a>
-                        </div>
+                <div class="mt-4 max-w-sm">
+                    <x-input-label for="password" :value="__('Jelszó')" />
+                    <div class="relative">
+                        <x-text-input
+                            id="password"
+                            class="block w-full rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none"
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="new-password" />
+
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer password-toggle-icon">
+                            <i class="fas fa-eye text-black"></i> <!-- Initial icon -->
+                        </span>
                     </div>
-                    <div class="mt-2">
-                        <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                    @error('password')
-                    <span class="text-sm text-red-600">{{ $message }}</span>
-                    @enderror
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
                 <div class="mt-6">
@@ -61,3 +74,21 @@
         </div>
     </div>
 </x-layouts.guest>
+
+
+<script>
+    const passwordField = document.getElementById("password");
+    const togglePassword = document.querySelector(".password-toggle-icon i");
+
+    togglePassword.addEventListener("click", function () {
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            togglePassword.classList.remove("fa-eye");
+            togglePassword.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            togglePassword.classList.remove("fa-eye-slash");
+            togglePassword.classList.add("fa-eye");
+        }
+    });
+</script>
