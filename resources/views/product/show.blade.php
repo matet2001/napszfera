@@ -23,6 +23,21 @@
                             {{ $product->description }}
                         </p>
 
+                        @if($product->files()->where('isSample', true)->exists())
+                            @php
+                                // Retrieve the first file with isSample = true
+                                $firstSampleFile = $product->files()->where('isSample', true)->first();
+                            @endphp
+
+                                <!-- Audio Player -->
+                            @if($firstSampleFile)
+                                <audio id="audioPlayer" controls controlsList="nodownload" oncontextmenu="return false;" class="mt-4">
+                                    <source id="audioSource" src="{{ asset($firstSampleFile->file_path) }}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            @endif
+                        @endif
+
                         <x-product.add-to-cart-button :$product />
                     </div>
                 </div>

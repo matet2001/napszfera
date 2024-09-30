@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('file_path');
             $table->text('description')->nullable();
+            $table->boolean('isSample')->default(false);
             $table->timestamps();
         });
     }

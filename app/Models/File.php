@@ -9,7 +9,7 @@ class File extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'file_path', 'product_id'];
+    protected $fillable = ['title', 'file_path', 'product_id', 'isSample'];
 
     // Define the relationship with the Product model
     public function product()
