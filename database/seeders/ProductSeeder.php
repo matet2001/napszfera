@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use getID3;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -91,17 +92,22 @@ class ProductSeeder extends Seeder
 
                 // Add MP3 files as related File records
                 foreach ($mp3Files as $file) {
+                    // Calculate the length of the audio file
+                    $filePath = $productPath . '/' . $file;
+                    $duration = $this->getAudioDuration($filePath); // Call the function to get duration
+
                     // Check if the file name contains 'sample'
-                    $isSample = stripos($file, 'sample') !== false; // Case-insensitive check for 'sample'
+                    $isSample = stripos($file, 'sample') !== false;
 
                     // Create the related file entry
                     $product->files()->create([
-                        'title' => pathinfo($file, PATHINFO_FILENAME), // Use the filename as the title
+                        'title' => pathinfo($file, PATHINFO_FILENAME),
                         'file_path' => 'storage/products/' . $type . '/' . $productName . '/' . $file, // File path
-                        'isSample' => $isSample, // Set isSample based on whether 'sample' is in the file name
+                        'isSample' => $isSample,
+                        'duration' => $duration, // Store the duration
                     ]);
 
-                    echo "Added file: $file to product: $productName, isSample: $isSample\n";
+                    echo "Added file: $file to product: $productName, isSample: $isSample, duration: $duration seconds\n";
                 }
 
 
@@ -109,5 +115,36 @@ class ProductSeeder extends Seeder
             }
 
         }
+    }
+
+    private function getAudioDuration($filePath)
+    {
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            return null; // or handle the error as needed
+        }
+
+        // Use getID3 library to retrieve audio file info (make sure to install it)
+        $getID3 = new getID3; // Assuming you've included the getID3 library in your project
+        $fileInfo = $getID3->analyze($filePath);
+
+        // Check if 'playtime_string' is set and calculate the duration
+        if (isset($fileInfo['playtime_string'])) {
+            // Split the playtime string by colon
+            $timeArray = explode(':', $fileInfo['playtime_string']);
+
+            // Calculate total seconds based on the number of time segments
+            $totalSeconds = 0;
+            $segmentCount = count($timeArray);
+
+            // Handle durations with hours, minutes, and seconds
+            for ($i = 0; $i < $segmentCount; $i++) {
+                $totalSeconds += (int)$timeArray[$segmentCount - 1 - $i] * pow(60, $i);
+            }
+
+            return $totalSeconds; // Return total duration in seconds
+        }
+
+        return null; // Return null if duration is not found
     }
 }

@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    public function totalDuration()
+    {
+        return $this->files->sum('duration'); // Sum of durations of all files
+    }
 }

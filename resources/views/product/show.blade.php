@@ -14,11 +14,31 @@
                         <h2 class="font-bold text-3xl leading-10 mb-2 capitalize text-white">
                             {{ $product->name }}
                         </h2>
+                        @php
+                            $totalDurationSeconds = $product->totalDuration();
+
+                            // Convert seconds to hours and minutes
+                            $hours = floor($totalDurationSeconds / 3600);
+                            $minutes = floor(($totalDurationSeconds % 3600) / 60);
+
+                            // Format the duration string
+                            $formattedDuration = '';
+                            if ($hours > 0) {
+                                $formattedDuration .= $hours . ' óra ';
+                            }
+                            $formattedDuration .= $minutes . ' perc';
+                        @endphp
+
                         <div class="flex flex-col sm:flex-row sm:items-center mb-6">
-                            <h6
-                                class="font-manrope font-semibold text-2xl leading-9  pr-5 text-white">
-                                {{ $product->price }} FT</h6>
+                            <h6 class="font-manrope font-semibold text-xl leading-9 pr-5 text-gray">
+                                {{-- Display formatted duration --}}
+                                {{ $formattedDuration }}
+                            </h6>
+                            <h6 class="font-manrope font-semibold text-2xl leading-9 pr-5 text-white">
+                                {{ $product->price }} FT
+                            </h6>
                         </div>
+
                         <p class="text-base font-normal mb-5">
                             {{ $product->description }}
                         </p>
@@ -31,6 +51,24 @@
 
                                 <!-- Audio Player -->
                             @if($firstSampleFile)
+                                @php
+                                $partText = "";
+
+                                switch ($product->type) {
+                                      case "meditation":
+                                        $partText = "Részlet a meditációból";
+                                        break;
+                                      case "lecture":
+                                        $partText = "Részlet az előadásból";
+                                        break;
+                                      case "audiobook":
+                                        $partText = "Részlet a hangoskönyvből";
+                                        break;
+                                      default:
+                                        $partText = "Részlet az előadásból";
+                                    }
+                                @endphp
+                                <h2>{{ $partText }}</h2>
                                 <audio id="audioPlayer" controls controlsList="nodownload" oncontextmenu="return false;" class="mt-4">
                                     <source id="audioSource" src="{{ asset($firstSampleFile->file_path) }}" type="audio/mpeg">
                                     Your browser does not support the audio element.
