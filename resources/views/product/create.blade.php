@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex justify-center items-center min-h-screen">
+    <div class="flex justify-center items-center">
         <div class="w-full max-w-lg p-8 rounded-lg">
             <h1 class="text-2xl font-bold mb-6 text-center">Új Termék Hozzáadása</h1>
 
@@ -69,53 +69,4 @@
             <div id="message" class="mt-4 text-center"></div>
         </div>
     </div>
-
-{{--    <script>--}}
-{{--        document.getElementById('productForm').addEventListener('submit', async function (e) {--}}
-{{--            e.preventDefault();--}}
-
-{{--            // Create a new FormData object--}}
-{{--            const formData = new FormData(this);--}}
-
-{{--            // Get the file input for tracking upload progress--}}
-{{--            const fileInput = document.getElementById('file').files[0];--}}
-
-{{--            // Use XMLHttpRequest to track upload progress--}}
-{{--            const xhr = new XMLHttpRequest();--}}
-
-{{--            // Show progress bar--}}
-{{--            document.getElementById('progress-bar-wrapper').classList.remove('hidden');--}}
-
-{{--            // Event listener for progress--}}
-{{--            xhr.upload.addEventListener('progress', function (e) {--}}
-{{--                if (e.lengthComputable) {--}}
-{{--                    const percentComplete = (e.loaded / e.total) * 100;--}}
-{{--                    const progressBar = document.getElementById('progress-bar');--}}
-{{--                    progressBar.style.width = percentComplete + '%';--}}
-{{--                    progressBar.textContent = Math.round(percentComplete) + '%';--}}
-{{--                }--}}
-{{--            });--}}
-
-{{--            // Define what happens when the upload is done--}}
-{{--            xhr.onreadystatechange = function () {--}}
-{{--                if (xhr.readyState === XMLHttpRequest.DONE) {--}}
-{{--                    if (xhr.status === 200) {--}}
-{{--                        document.getElementById('message').innerHTML = '<span class="text-green-500">Termék sikeresen hozzáadva!</span>';--}}
-{{--                    } else {--}}
-{{--                        document.getElementById('message').innerHTML = '<span class="text-red-500">Hiba történt a fájl feltöltése során!</span>';--}}
-{{--                    }--}}
-{{--                    setTimeout(function () {--}}
-{{--                        document.getElementById('progress-bar-wrapper').classList.add('hidden');--}}
-{{--                    }, 2000);--}}
-{{--                }--}}
-{{--            };--}}
-
-{{--            // Open the request and send the FormData object--}}
-{{--            xhr.open('POST', "{{ route('product.store') }}", true);--}}
-{{--            xhr.setRequestHeader('X-CSRF-TOKEN', document.querySelector('input[name=_token]').value);--}}
-
-{{--            // Send the FormData with the file and other form data--}}
-{{--            xhr.send(formData);--}}
-{{--        });--}}
-{{--    </script>--}}
 </x-app-layout>

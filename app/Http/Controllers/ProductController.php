@@ -11,8 +11,10 @@ use Stripe\Stripe;
 class ProductController extends Controller
 {
     public function create() {
+        dd("create");
         return view('product.create');
     }
+
     public function store(Request $request)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));

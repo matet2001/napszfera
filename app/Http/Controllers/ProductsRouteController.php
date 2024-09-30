@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,14 +11,25 @@ class ProductsRouteController extends Controller
 {
     public int $paginationAmount = 12;
 
-    public function index() {
+    public function create() {
+        return view('product.create');
+    }
+
+    public function index()
+    {
+        // Fetch latest post
+        $latestPost = Post::latest()->first();
+
+        // Fetch products with pagination
         $productList = Product::simplePaginate($this->paginationAmount);
 
         return view('product.index', [
-            'title' => 'Termékek',
+            'title' => 'Alkotásaim',
             'productList' => $productList,
+            'latestPost' => $latestPost, // Pass the latest post to the view
         ]);
     }
+
 
     // Display all product of type 'lecture'
     public function lecture() {

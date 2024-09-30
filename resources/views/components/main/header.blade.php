@@ -41,11 +41,17 @@
                         <a href="{{ route('inventory.index') }}" class="block px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-0">Termékeim</a>
                         <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-1">Profilom</a>
                         <a href="#" id="logout-link" class="block px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1">Kijelentkezés</a>
-
                         <!-- Hidden logout form -->
                         <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
                             @csrf
                         </form>
+
+                        @if(Auth::check() && Auth::user()->is_admin)
+                            <a href="{{ route('product.create') }}" class="block bg-yellow px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-2">Termék Feltöltés</a>
+                            <a href="{{ route('blog.create') }}" class="block bg-yellow px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-3">Blog Posztolás</a>
+                        @endif
+
+
                     </div>
                 </div>
             @endauth

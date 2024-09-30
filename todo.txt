@@ -1,15 +1,16 @@
-- make blog page, and admin post page with youtube link possibles
-- le lehessen letölteni a termék mappákat
-
+- le lehessen tölteni a termék mappákat
 - make upload work
-- Save where the user left the lessoning of a audio, and what was the time, load it next time
+
 - Switch to simple pay and szamlazz.hu
 - jogi és ászf legyen elfogadtatva fizetés elött
-- fájl feltöltésnél lehessen többet feltölteni
-- make profil edit page validation hun, and work
+
+- Save where the user left the lessoning of a audio, and what was the time, load it next time
 
 - Add description to audiobooks on seed
 - Add descrption option to audio files also
 
 - Send email to verify, and when buying a product
+
 - Deploy page
+
+- make profil edit page validation hun, and work

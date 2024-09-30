@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CartController,
+use App\Http\Controllers\{BlogController,
+    CartController,
     CheckoutController,
     FileProgressController,
     InventoryController,
@@ -10,8 +11,19 @@ use App\Http\Controllers\{CartController,
     ProfileController,
     StaticPageController};
 
+// Product upload routes (admin only)
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/blog/upload', [BlogController::class, 'create'])->name('blog.create');
+    Route::post('/blog/upload', [BlogController::class, 'store'])->name('blog.store');
+
+    Route::get('/product/upload', [ProductsRouteController::class, 'create'])->name('product.create');
+    Route::post('/product/upload', [ProductController::class, 'store'])->name('product.store');
+});
+
+
 // Public routes
 Route::get('/', [ProductsRouteController::class, 'index'])->name('home');
+//Route::get('/', [BlogController::class, 'index'])->name('home');
 Route::get('/product', [ProductsRouteController::class, 'index'])->name('product.index');
 Route::get('/product/lecture', [ProductsRouteController::class, 'lecture'])->name('product.lecture');
 Route::get('/product/meditation', [ProductsRouteController::class, 'meditation'])->name('product.meditation');
@@ -52,11 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/file-progress/{product_id}/{file_id}', [FileProgressController::class, 'update'])->name('file.progress.update');
 });
 
-// Product upload routes (admin only)
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/upload', [ProductController::class, 'create'])->name('product.create');
-    Route::post('/upload', [ProductController::class, 'store'])->name('product.store');
-});
+
 
 
 // Authentication routes (if not already included in another file)
