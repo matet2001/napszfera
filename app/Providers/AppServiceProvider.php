@@ -42,27 +42,12 @@ class AppServiceProvider extends ServiceProvider
                             'price' => $item->product->price,
                             'description' => $item->product->description,
                             'type' => $item->product->type,
+                            'isImageStand' => $item->product->isImageStand,
                         ];
                     }) : collect([])
                 ];
 //                Log::info('Auth Cart data:', ['cart' => $cart]);
-            } else {
-                $cartItems = session()->get('cart', []);
-                $cart = (object) [
-                    'items' => collect($cartItems)->map(function ($item) {
-                        return (object) [
-                            'product_id' => $item['product_id'] ?? null,
-                            'name' => $item['name'] ?? 'Unknown', // Default or placeholder name
-                            'image' => $item['image'] ?? 'default-image.jpg', // Default or placeholder image
-                            'price' => $item['price'] ?? 0, // Default or placeholder price
-                            'description' => $item['description'] ?? 'No description available', // Default or placeholder description
-                            'type' => $item['type'] ?? 'null',
-                        ];
-                    })
-                ];
-//                Log::info('Guest Cart data:', ['cartItems' => $cartItems,'cart' => $cart]);
             }
-
             $view->with('cart', $cart);
         });
     }

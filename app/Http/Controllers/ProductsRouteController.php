@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +18,7 @@ class ProductsRouteController extends Controller
     {
         // Fetch latest post
         $latestPost = Post::latest()->first();
+//        dd($latestPost);
 
         // Fetch products with pagination
         $productList = Product::simplePaginate($this->paginationAmount);

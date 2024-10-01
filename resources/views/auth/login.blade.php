@@ -54,17 +54,6 @@
                         Bejelentkezés
                     </button>
                 </div>
-
-                <!-- General error message if any -->
-                @if ($errors->any())
-                    <div class="mt-4 text-red-600">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
             </form>
 
         <p class="mt-10 text-center text-sm">

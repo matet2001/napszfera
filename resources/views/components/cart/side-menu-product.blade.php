@@ -15,8 +15,6 @@
                     <!-- Link to product detail page -->
                     <a href="{{ route('product.show', ['product' => $product->product_id]) }}">{{ $product->name }}</a>
                 </h3>
-                <!-- Product description -->
-                <p class="mt-1 text-sm text-gray-500">{{ $product->description ?? '' }}</p>
             </div>
         </div>
         <div class="flex items-center justify-between text-sm mb-2">

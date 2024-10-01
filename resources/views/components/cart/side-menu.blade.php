@@ -85,6 +85,7 @@
             const overlay = document.getElementById('cart-background-overlay');
 
             function openPanel() {
+                console.log("open");
                 panel.classList.remove('hidden');
                 setTimeout(function () {
                     content.classList.remove('translate-x-full');

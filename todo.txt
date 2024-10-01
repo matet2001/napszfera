@@ -3,6 +3,7 @@
 
 - le lehessen tölteni a termék mappákat
 - make upload work
+
 - Save where the user left the lessoning of a audio, and what was the time, load it next time
 
 - Switch to simple pay and szamlazz.hu

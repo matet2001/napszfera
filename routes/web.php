@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BlogController,
+use App\Http\Controllers\{
+    BlogController,
     CartController,
     CheckoutController,
-    FileProgressController,
     InventoryController,
     ProductController,
     ProductsRouteController,
@@ -60,12 +60,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Inventory routes
     Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
     Route::get('/inventory/{product}', [InventoryController::class, 'show'])->name('inventory.show');
-
-    Route::post('/file-progress/{product_id}/{file_id}', [FileProgressController::class, 'update'])->name('file.progress.update');
 });
-
-
-
 
 // Authentication routes (if not already included in another file)
 require __DIR__ . '/auth.php';

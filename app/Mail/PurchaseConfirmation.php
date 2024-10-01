@@ -26,23 +26,12 @@ class PurchaseConfirmation extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->subject('Purchase Confirmation')
-            ->view('emails.purchase_confirmation')
-            ->with('order', $this->order);
-    }
-
-    /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
+            from: env('MAIL_FROM_ADDRESS'),
             subject: 'Purchase Confirmation',
         );
     }
@@ -53,7 +42,7 @@ class PurchaseConfirmation extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.purchase_confirmation',
         );
     }
 

@@ -52,18 +52,9 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
         ]);
 
-        // Free product logic
-        $freeProductId = 15;
-
-        InventoryItem::create([
-            'inventory_id' => $inventory->id,
-            'product_id' => $freeProductId,
-        ]);
-
         event(new Registered($user));
 
         Auth::login($user);
-        Log::info('Register was succesfull');
 
         return redirect(route('product.index', absolute: false));
     }

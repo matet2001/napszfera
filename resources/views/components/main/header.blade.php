@@ -77,6 +77,12 @@
             </button>
         </div>
     </nav>
+
+    <!-- Cart Sidebar Menu -->
+    @auth
+        <x-cart.side-menu :cart="$cart" />
+    @endauth
+
     <!-- Mobile Sidebar Menu -->
     <x-mobile.side-panel />
 

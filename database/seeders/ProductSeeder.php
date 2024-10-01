@@ -102,10 +102,10 @@ class ProductSeeder extends Seeder
                     echo "No description file found for product: $productName in $productPath\n";
                 }
 
-// Output details before creating the product
+                // Output details before creating the product
                 echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple, isImageStand = $isImageStand\n";
 
-// Create the product with the price, isSingle status, isImageStand, and description
+                // Create the product with the price, isSingle status, isImageStand, and description
                 $product = Product::factory()->create([
                     'name' => $productName,
                     'image' => 'storage/products/' . $type . '/' . $productName . '/' . $imageFile, // Use the /storage path

@@ -15,7 +15,7 @@
 
                 <!-- Description -->
                 <div class="mb-4">
-                    <label for="description" class="block font-semibold mb-2">Leírás:</label>
+                    <label for="content" class="block font-semibold mb-2">Leírás:</label>
                     <textarea name="content" id="content" class="w-full px-4 py-2 border rounded-lg text-black focus:outline-none focus:ring focus:ring-blue-200" rows="4" required></textarea>
                 </div>
 
