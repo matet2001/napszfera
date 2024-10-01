@@ -39,7 +39,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 // Public routes
 Route::get('/', [ProductsRouteController::class, 'index'])->name('home');
-//Route::get('/', [BlogController::class, 'index'])->name('home');
 Route::get('/product', [ProductsRouteController::class, 'index'])->name('product.index');
 Route::get('/product/lecture', [ProductsRouteController::class, 'lecture'])->name('product.lecture');
 Route::get('/product/meditation', [ProductsRouteController::class, 'meditation'])->name('product.meditation');
