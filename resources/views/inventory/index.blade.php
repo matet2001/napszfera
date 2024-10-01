@@ -14,7 +14,7 @@
                 @endforeach
             </div>
             @else
-                <p>No items in your inventory.</p>
+                <p>Még nincs egy terméked sem.</p>
             @endif
 
         </div>

@@ -12,6 +12,8 @@
 
 </style>
 
+@vite('resources/js/password-eye.js')
+
 <x-layouts.guest>
     <div class="flex min-h-full flex-col justify-center px-6  lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -63,21 +65,3 @@
         </div>
     </div>
 </x-layouts.guest>
-
-
-<script>
-    const passwordField = document.getElementById("password");
-    const togglePassword = document.querySelector(".password-toggle-icon i");
-
-    togglePassword.addEventListener("click", function () {
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            togglePassword.classList.remove("fa-eye");
-            togglePassword.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            togglePassword.classList.remove("fa-eye-slash");
-            togglePassword.classList.add("fa-eye");
-        }
-    });
-</script>

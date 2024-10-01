@@ -1,3 +1,4 @@
+@vite('resources/js/password-eye.js')
 <x-layouts.guest>
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <a href="/" class="flex items-center justify-center">
@@ -33,18 +34,36 @@
                 </div>
 
                 <!-- Password -->
-                <div class="mt-4">
+{{--                <div class="mt-4">--}}
+{{--                    <x-input-label for="password" :value="__('Jelszó')" />--}}
+{{--                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />--}}
+{{--                    <x-input-error :messages="$errors->get('password')" class="mt-2" />--}}
+{{--                </div>--}}
+
+                <div class="mt-4 max-w-sm">
                     <x-input-label for="password" :value="__('Jelszó')" />
-                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                    <div class="relative">
+                        <x-text-input
+                            id="password"
+                            class="block w-full rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none"
+                            type="password"
+                            name="password"
+                            required
+                            autocomplete="new-password" />
+
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer password-toggle-icon">
+                            <i class="fas fa-eye text-black"></i> <!-- Initial icon -->
+                        </span>
+                    </div>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
-                <!-- Confirm Password -->
-                <div class="mt-4">
-                    <x-input-label for="password_confirmation" :value="__('Jelszó Megerősítése')" />
-                    <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                </div>
+{{--                <!-- Confirm Password -->--}}
+{{--                <div class="mt-4">--}}
+{{--                    <x-input-label for="password_confirmation" :value="__('Jelszó Megerősítése')" />--}}
+{{--                    <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />--}}
+{{--                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />--}}
+{{--                </div>--}}
 
                 <!-- Terms and Conditions Checkbox -->
                 <div class="flex items-center space-x-2">

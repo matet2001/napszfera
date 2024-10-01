@@ -11,6 +11,22 @@ use App\Http\Controllers\{
     ProfileController,
     StaticPageController};
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+Route::get('/test-email-verification', function (Request $request) {
+    $user = Auth::user(); // Assuming you're logged in as a user
+
+    // Send the verification email
+    if ($user) {
+        $user->sendEmailVerificationNotification();
+        return 'Verification email sent to ' . $user->email;
+    }
+
+    return 'No user is logged in.';
+});
+
+
 // Product upload routes (admin only)
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/blog/upload', [BlogController::class, 'create'])->name('blog.create');
