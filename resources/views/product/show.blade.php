@@ -45,13 +45,24 @@
 
                         <x-divider />
 
+                        {{--Description--}}
+                        @if($product->description)
+                            <h2>Leírás: </h2>
+                            <br>
+                            <p class="text-white">
+                                {!! nl2br($product->description) !!}
+                            </p>
+                        @endif
+
+                        <x-divider />
+
+                        <!-- Audio Player -->
                         @if($product->files()->where('isSample', true)->exists())
                             @php
                                 // Retrieve the first file with isSample = true
                                 $firstSampleFile = $product->files()->where('isSample', true)->first();
                             @endphp
 
-                                <!-- Audio Player -->
                             @if($firstSampleFile)
                                 @php
                                     $partText = "";
@@ -79,15 +90,7 @@
                                 </audio>
                             @endif
                         @endif
-                        <x-divider />
 
-                        @if($product->description)
-                            <h2>Leírás: </h2>
-                            <br>
-                            <p class="text-white">
-                                {{ $product->description }}
-                            </p>
-                        @endif
                         <x-divider />
 
                         <x-product.add-to-cart-button :$product/>
