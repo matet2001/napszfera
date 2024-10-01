@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PurchaseConfirmation;
 use App\Models\Inventory;
 use App\Models\InventoryItem;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 
@@ -21,29 +25,54 @@ class CheckoutController extends Controller
 
     public function success(Request $request) {
 
-        // Call the emptyCart method
+        // Check if the user is authenticated
         if (Auth::check()) {
             $userId = Auth::id();
-            $cart = $this->cartController->getCart();
+            $cart = $this->cartController->getCart();  // Assuming this gets the current cart with items
 
             // Create or get the user's inventory
             $inventory = Inventory::firstOrCreate(['user_id' => $userId]);
 
-            // Add items to the inventory
-            //4242 4242 4242 4242
+            // Calculate the total price for the order from the cart items
+            $totalAmount = 0;
             foreach ($cart->items as $item) {
+                $totalAmount += $item->product->price * $item->quantity;  // Assuming 'price' and 'quantity' fields
+            }
+
+            // Create a new order record
+            $order = Order::create([
+                'user_id' => $userId,
+                'total' => $totalAmount,
+                'status' => 'completed',  // You can use any status system you prefer
+            ]);
+
+            // Add items to the inventory and attach them to the order
+            foreach ($cart->items as $item) {
+                // Add the item to the user's inventory
                 InventoryItem::create([
                     'inventory_id' => $inventory->id,
                     'product_id' => $item->product_id
                 ]);
+
+                // Add the purchased item to the order (assuming you have an OrderItem model)
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->product->price,  // Store the price at the time of purchase
+                ]);
             }
 
-            // Optionally empty the cart
+            // Send purchase confirmation email with the order details
+            Mail::to($request->user()->email)->send(new PurchaseConfirmation($order));
+
+            // Empty the user's cart after purchase
             $this->cartController->emptyCart();
         }
 
-        return view('cart.success');
+        return view('cart.success');  // Display success message or page
     }
+
 
     public function cancel(Request $request) {
 

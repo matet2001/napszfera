@@ -41,7 +41,7 @@ Route::get('/contact', [StaticPageController::class, 'contact'])->name('contact'
 Route::get('/about', [StaticPageController::class, 'about'])->name('about');
 
 // for logged-in users only
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     // Authentication routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
