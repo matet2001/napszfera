@@ -1,13 +1,10 @@
 @vite('resources/js/password-eye.js')
 <x-layouts.guest>
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="flex min-h-full flex-col justify-center px-6 lg:px-8">
         <a href="/" class="flex items-center justify-center">
             <x-application-logo class="h-20 w-20"/>
         </a>
         <h2 class="mt-10 text-center text-3xl font-bold leading-9 tracking-tight">Regisztrálj egy új profilt</h2>
-    </div>
-
-    <div class="flex min-h-full flex-col justify-center px-6 lg:px-8">
         <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-sm"> <!-- Reduced margin-top from mt-10 to mt-6 -->
             <form class="space-y-6" method="POST" action="{{ route('register') }}">
                 @csrf
@@ -34,12 +31,6 @@
                 </div>
 
                 <!-- Password -->
-{{--                <div class="mt-4">--}}
-{{--                    <x-input-label for="password" :value="__('Jelszó')" />--}}
-{{--                    <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />--}}
-{{--                    <x-input-error :messages="$errors->get('password')" class="mt-2" />--}}
-{{--                </div>--}}
-
                 <div class="mt-4 max-w-sm">
                     <x-input-label for="password" :value="__('Jelszó')" />
                     <div class="relative">

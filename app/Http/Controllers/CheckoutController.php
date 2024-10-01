@@ -25,6 +25,10 @@ class CheckoutController extends Controller
 
     public function success(Request $request) {
 
+        if (!session()->has('stripe_session_id')) {
+            return redirect()->route('home')->with('warning', 'Nincs befejezett fizetés.');
+        }
+
         // Check if the user is authenticated
         if (Auth::check()) {
             $userId = Auth::id();

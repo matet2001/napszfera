@@ -1,11 +1,4 @@
 <style>
-    input {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 100%;
-    }
-
     .password-toggle-icon {
         cursor: pointer;
     }
@@ -16,14 +9,11 @@
 
 <x-layouts.guest>
     <div class="flex min-h-full flex-col justify-center px-6  lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <a href="/" class="flex items-center justify-center">
                 <x-application-logo class="h-20 w-20"/>
             </a>
-            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">Jelentkezz be a profilodba</h2>
-        </div>
-
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <h2 class="mt-10 text-center text-3xl font-bold leading-9 tracking-tight">Jelentkezz be a profilodba</h2>
             <form class="space-y-6" action="/login" method="POST">
                 @csrf
 
