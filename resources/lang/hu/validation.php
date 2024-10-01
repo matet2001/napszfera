@@ -69,6 +69,7 @@ return [
     'not_regex' => 'A(z) :attribute formátuma érvénytelen.',
     'numeric' => 'A(z) :attribute számnak kell lennie.',
     'password' => 'A jelszó helytelen.',
+    'current_password' => 'A jelszó helytelen.',
     'present' => 'A(z) :attribute mezőnek jelen kell lennie.',
     'regex' => 'A(z) :attribute formátuma érvénytelen.',
     'required' => 'A(z) :attribute mező kitöltése kötelező.',

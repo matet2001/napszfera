@@ -1,3 +1,4 @@
+@php use Illuminate\Contracts\Auth\MustVerifyEmail; @endphp
 <x-user-form>
     <section>
         <header>
@@ -19,22 +20,25 @@
             @method('patch')
 
             <div>
-                <x-input-label for="name" :value="__('Név')" />
-                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                <x-input-label for="name" :value="__('Név')"/>
+                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
+                              :value="old('name', $user->name)" required autofocus autocomplete="name"/>
+                <x-input-error class="mt-2" :messages="$errors->get('name')"/>
             </div>
 
             <div>
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-                <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                <x-input-label for="email" :value="__('Email')"/>
+                <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
+                              :value="old('email', $user->email)" required autocomplete="username"/>
+                <x-input-error class="mt-2" :messages="$errors->get('email')"/>
 
-                @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+                @if ($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail())
                     <div>
                         <p class="text-sm mt-2 text-gray-800">
                             {{ __('Az e-mail címed nincs megerősítve.') }}
 
-                            <button form="send-verification" class="underline text-sm hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <button form="send-verification"
+                                    class="underline text-sm hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 {{ __('Kattints ide az e-mail megerősítés újraküldéséhez.') }}
                             </button>
                         </p>

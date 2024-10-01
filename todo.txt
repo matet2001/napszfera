@@ -1,13 +1,9 @@
-- Send email to verify, and when buying a product
+- make profil edit page validation hun, and work
+
 - Deploy page
 
 - le lehessen tölteni a termék mappákat
 - make upload work
 
-- Save where the user left the lessoning of a audio, and what was the time, load it next time
-
 - Switch to simple pay and szamlazz.hu
 - jogi és ászf legyen elfogadtatva fizetés elött
-
-
-- make profil edit page validation hun, and work
