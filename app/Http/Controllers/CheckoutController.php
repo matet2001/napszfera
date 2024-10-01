@@ -36,7 +36,7 @@ class CheckoutController extends Controller
             // Calculate the total price for the order from the cart items
             $totalAmount = 0;
             foreach ($cart->items as $item) {
-                $totalAmount += $item->product->price * $item->quantity;  // Assuming 'price' and 'quantity' fields
+                $totalAmount += $item->product->price;  // Assuming 'price' and 'quantity' fields
             }
 
             // Create a new order record
