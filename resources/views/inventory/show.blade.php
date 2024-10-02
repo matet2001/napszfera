@@ -1,4 +1,4 @@
-@props(["product", "files", "progress"])
+@props(["product", "files"])
 
 @php
     $firstFile = $files->first();  // Get the first file from the paginated files
@@ -32,11 +32,6 @@
                                     <h2 id="fileTitle" class="text-2xl font-bold mb-2 text-black text-center">{{ $firstFile->title }}</h2>
 {{--                                @endif--}}
 
-                                <form id="progressForm" action="{{ route('file.progress.update', ['product_id' => $product->id, 'file_id' => $firstFile->id]) }}" method="POST" style="display: none;">
-                                    @csrf
-                                    <input type="hidden" name="last_position" id="lastPositionInput">
-                                </form>
-
                                 <audio id="audioPlayer" controls controlsList="nodownload" oncontextmenu="return false;" class="mt-4">
                                     <source id="audioSource" src="{{ asset($firstFile->file_path) }}" type="audio/mpeg">
                                     Your browser does not support the audio element.
@@ -56,42 +51,42 @@
     </section>
 </x-app-layout>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const audioPlayer = document.getElementById('audioPlayer');
+{{--<script>--}}
+{{--    document.addEventListener('DOMContentLoaded', function () {--}}
+{{--        const audioPlayer = document.getElementById('audioPlayer');--}}
 
-        audioPlayer.currentTime = {{ $progress ? $progress->last_position : 0 }};
-        console.log("Javascript on");
+{{--        audioPlayer.currentTime = {{ $progress ? $progress->last_position : 0 }};--}}
+{{--        console.log("Javascript on");--}}
 
-        // Event listener for pause or when the user leaves the page
-        audioPlayer.addEventListener('pause', function () {
-            const lastPosition = Math.floor(audioPlayer.currentTime); // Get the current time in seconds
+{{--        // Event listener for pause or when the user leaves the page--}}
+{{--        audioPlayer.addEventListener('pause', function () {--}}
+{{--            const lastPosition = Math.floor(audioPlayer.currentTime); // Get the current time in seconds--}}
 
-            // Send an AJAX request to update the last listened position
-            fetch('/file-progress/{{ $product->id }}/{{ $firstFile->id }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ 'last_position': lastPosition })
-            }).then(response => response.json())
-                .then(data => console.log('Request sent', data))
-                .catch(error => console.error('Error:', error));
+{{--            // Send an AJAX request to update the last listened position--}}
+{{--            fetch('/file-progress/{{ $product->id }}/{{ $firstFile->id }}', {--}}
+{{--                method: 'POST',--}}
+{{--                headers: {--}}
+{{--                    'Content-Type': 'application/json',--}}
+{{--                    'X-CSRF-TOKEN': '{{ csrf_token() }}'--}}
+{{--                },--}}
+{{--                body: JSON.stringify({ 'last_position': lastPosition })--}}
+{{--            }).then(response => response.json())--}}
+{{--                .then(data => console.log('Request sent', data))--}}
+{{--                .catch(error => console.error('Error:', error));--}}
 
-            console.log("Request Send");
-        });
+{{--            console.log("Request Send");--}}
+{{--        });--}}
 
-        // You could also update the position when the user leaves the page
-        window.addEventListener('beforeunload', function () {
-            const lastPosition = Math.floor(audioPlayer.currentTime);
+{{--        // You could also update the position when the user leaves the page--}}
+{{--        window.addEventListener('beforeunload', function () {--}}
+{{--            const lastPosition = Math.floor(audioPlayer.currentTime);--}}
 
-            navigator.sendBeacon('/file-progress/{{ $product->id }}/{{ $firstFile->id }}', JSON.stringify({
-                _token: '{{ csrf_token() }}',
-                last_position: lastPosition
-            }));
+{{--            navigator.sendBeacon('/file-progress/{{ $product->id }}/{{ $firstFile->id }}', JSON.stringify({--}}
+{{--                _token: '{{ csrf_token() }}',--}}
+{{--                last_position: lastPosition--}}
+{{--            }));--}}
 
-            console.log("Request Send");
-        });
-    });
-</script>
+{{--            console.log("Request Send");--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}

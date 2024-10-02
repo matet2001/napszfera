@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{
-    BlogController,
+use App\Http\Controllers\{BlogController,
     CartController,
     CheckoutController,
     InventoryController,
     ProductController,
-    ProductsRouteController,
     ProfileController,
-    StaticPageController};
+    StaticPageController,
+    UploadController};
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -32,21 +31,22 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/blog/upload', [BlogController::class, 'create'])->name('blog.create');
     Route::post('/blog/upload', [BlogController::class, 'store'])->name('blog.store');
 
-    Route::get('/product/upload', [ProductsRouteController::class, 'create'])->name('product.create');
-    Route::post('/product/upload', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/product/upload', [UploadController::class, 'create'])->name('product.create');
+    Route::post('/product/store', [UploadController::class, 'store'])->name('product.store');
+    Route::post('/product/upload', [UploadController::class, 'upload'])->name('product.upload');
 });
 
 
 // Public routes
-Route::get('/', [ProductsRouteController::class, 'index'])->name('home');
-Route::get('/product', [ProductsRouteController::class, 'index'])->name('product.index');
-Route::get('/product/lecture', [ProductsRouteController::class, 'lecture'])->name('product.lecture');
-Route::get('/product/meditation', [ProductsRouteController::class, 'meditation'])->name('product.meditation');
-Route::get('/product/audiobook', [ProductsRouteController::class, 'audiobook'])->name('product.audiobook');
-Route::get('/product/{product}', [ProductsRouteController::class, 'show'])->name('product.show');
+Route::get('/', [ProductController::class, 'index'])->name('home');
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product/lecture', [ProductController::class, 'lecture'])->name('product.lecture');
+Route::get('/product/meditation', [ProductController::class, 'meditation'])->name('product.meditation');
+Route::get('/product/audiobook', [ProductController::class, 'audiobook'])->name('product.audiobook');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 // Search route
-Route::get('/search', [ProductsRouteController::class, 'search'])->name('search');
+Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 // Static pages
 Route::get('/terms', [StaticPageController::class, 'terms'])->name('terms');

@@ -26,16 +26,6 @@ class InventoryController extends Controller
     public function show(Product $product) {
 
         if (Auth::check()) {
-            $progress = UserFileProgress::where('user_id', Auth::id())
-                ->where('product_id', $product->id)
-                ->first();
-
-            $currentPage = 1;
-
-            if ($progress) {
-                $currentPage = $progress->page_number ? : 1; // Use page number from progress or default to 1
-            }
-
             $filesQuery = $product->files();
             $files = $filesQuery->simplePaginate(1);
 
@@ -43,7 +33,6 @@ class InventoryController extends Controller
             return view('inventory.show', [
                 'product' => $product,
                 'files' => $files,
-                'progress' => $progress
             ]);
         }
 

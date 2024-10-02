@@ -1,9 +1,7 @@
-- make profil edit page validation hun, and work
+- make upload work
+- le lehessen tölteni a termék mappákat
 
 - Deploy page
-
-- le lehessen tölteni a termék mappákat
-- make upload work
 
 - Switch to simple pay and szamlazz.hu
 - jogi és ászf legyen elfogadtatva fizetés elött
