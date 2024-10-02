@@ -7,8 +7,6 @@
 
 
 Optional:
-- make admin own every product, even if its newly added
-
 - make bug report page
 - make admin option page
     - admin make everything unbuyable
