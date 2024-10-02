@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Models\Inventory;
+use App\Models\InventoryItem;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -105,6 +108,8 @@ class UploadController extends Controller
                 'isMultiple' => false,
             ]);
 
+            $this->addProductToAdminInventory($product);
+
             Log::info('Product created with ID: ' . $product->id);
 
             // Create a new file entry linked to the product
@@ -114,6 +119,7 @@ class UploadController extends Controller
                 'product_id' => $product->id,
                 'isSample' => false,
             ]);
+
 
             // Log success
             Log::info('Product and associated file created successfully.');
@@ -131,5 +137,21 @@ class UploadController extends Controller
             // Return a JSON error message with status code 500
             return response()->json(['message' => 'Failed to create product. Error: ' . $e->getMessage()], 500);
         }
+    }
+
+    private function addProductToAdminInventory($product) {
+        // Get the admin user (assuming there's only one admin)
+        $admin = User::where('is_admin', true)->first();
+
+        // Ensure the admin has an inventory
+        $inventory = Inventory::firstOrCreate([
+            'user_id' => $admin->id,
+        ]);
+
+        // Assign the product to the admin's inventory
+        InventoryItem::create([
+            'inventory_id' => $inventory->id,
+            'product_id' => $product->id,
+        ]);
     }
 }
