@@ -26,6 +26,10 @@ class Product extends Model
 
     public function totalDuration()
     {
-        return $this->files->sum('duration'); // Sum of durations of all files
+        // Use the `files` relationship and sum the result of `getAudioDuration()` for each file
+        return $this->files->reduce(function ($carry, $file) {
+            return $carry + $file->getAudioDuration();
+        }, 0);
     }
+
 }

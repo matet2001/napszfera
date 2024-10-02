@@ -6,7 +6,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2 ">
                 <div class="img rounded-xl">
                     <div class="img-box h-full max-lg:mx-auto rounded-lg overflow-hidden">
-                        <x-product.image :$product/>
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }} image"
+                             class="max-lg:mx-auto lg:ml-auto w-full  object-contain object-center rounded-lg">
                     </div>
                 </div>
                 <div
