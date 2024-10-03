@@ -5,12 +5,14 @@ namespace App\Models;
 use getID3;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class File extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'file_path', 'product_id', 'isSample'];
+    protected $fillable = ['product_id', 'title', 'file_path', 'type'];
 
     // Define the relationship with the Product model
     public function product()
@@ -20,34 +22,25 @@ class File extends Model
 
     public function getAudioDuration()
     {
-        $filePath = $this->file_path;
+        $relativeFilePath = 'products/' . $this->file_path; // $this->file_path directly as it's a string
 
-        // Check if the file exists
-        if (!file_exists($filePath)) {
-            return null; // or handle the error as needed
+        Log::info("Relative URL of the file: " . $relativeFilePath);
+
+        // Check if the file exists in the 'public' disk
+        if (!Storage::disk('public')->exists($relativeFilePath)) {
+            return 0;
         }
 
-        // Use getID3 library to retrieve audio file info (make sure to install it)
-        $getID3 = new getID3; // Assuming you've included the getID3 library in your project
-        $fileInfo = $getID3->analyze($filePath);
+        // Use getID3 library to retrieve audio file info
+        $getID3 = new getID3;
+        $fileInfo = $getID3->analyze(Storage::disk('public')->path($relativeFilePath)); // Use path()
 
-        // Check if 'playtime_string' is set and calculate the duration
-        if (isset($fileInfo['playtime_string'])) {
-            // Split the playtime string by colon
-            $timeArray = explode(':', $fileInfo['playtime_string']);
-
-            // Calculate total seconds based on the number of time segments
-            $totalSeconds = 0;
-            $segmentCount = count($timeArray);
-
-            // Handle durations with hours, minutes, and seconds
-            for ($i = 0; $i < $segmentCount; $i++) {
-                $totalSeconds += (int)$timeArray[$segmentCount - 1 - $i] * pow(60, $i);
-            }
-
-            return $totalSeconds; // Return total duration in seconds
+        // Check if 'playtime_seconds' is set (it gives duration in seconds)
+        if (isset($fileInfo['playtime_seconds'])) {
+            return (int) $fileInfo['playtime_seconds']; // Return total duration in seconds
         }
 
-        return 0; // Return null if duration is not found
+        return 0; // Return 0 if duration is not found
     }
+
 }

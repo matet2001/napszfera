@@ -3,7 +3,7 @@
 <div class="relative mx-auto flex w-full max-w-sm flex-col overflow-hidden rounded-lg border border-gray-300 bg-white/10 shadow-md p-4">
     <!-- Product Image -->
     <a class="relative mx-auto flex aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-xl" href="{{ route('product.show', ['product' => $product->id]) }}">
-        <x-product.image :$product />
+        <x-product.image :product="$product" :isImageStand="$product->getIsImageStand()"/>
     </a>
 
     <!-- Product Details -->

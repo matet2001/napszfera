@@ -47,51 +47,51 @@ class ProductSeeder extends Seeder
                 // The product name is the name of the directory
                 $productName = $productDir;
 
-                // Find the image (jpg/png) in the product directory
-                $imageFile = null;
-                foreach (array_diff(scandir($productPath), ['..', '.']) as $file) {
-                    if (preg_match('/\.(png|jpg)$/i', $file)) {
-                        $imageFile = $file;
-                        break;
-                    }
-                }
-
-                if (!$imageFile) {
-                    echo "No image found for product: $productName in $productPath\n";
-                    continue;
-                }
-
                 // Set the price based on the product type
                 $price = $prices[$type];
 
-                // Count the number of MP3 files in the product directory
-                $mp3Files = array_filter(array_diff(scandir($productPath), ['..', '.']), function ($file) {
-                    return preg_match('/\.mp3$/i', $file);
-                });
-                $fileCount = count($mp3Files);
+                // Scan the product directory and classify files by type
+                $files = array_diff(scandir($productPath), ['..', '.']);
+                $mp3Files = [];
+                $zipFiles = [];
+                $imageFiles = [];
+                $audioSamples = [];
 
-                // Set isMultiple to true if more than 1 MP3 file exists, otherwise false
-                $isMultiple = $fileCount > 1;
+                foreach ($files as $file) {
+                    // Check for image files (jpg, png)
+                    if (preg_match('/\.(png|jpg)$/i', $file)) {
+                        if ($type === 'audiobook') {
+                            $imageFiles[] = ['file' => $file, 'type' => 'imageStand']; // Special rule for audiobooks
+                        } else {
+                            $imageFiles[] = ['file' => $file, 'type' => 'image'];
+                        }
+                    }
+                    // Check for audio files (mp3)
+                    elseif (preg_match('/\.mp3$/i', $file)) {
+                        if (stripos($file, 'sample') !== false) {
+                            $audioSamples[] = $file;
+                        } else {
+                            $mp3Files[] = $file;
+                        }
+                    }
+                    // Check for zip files
+                    elseif (preg_match('/\.zip$/i', $file)) {
+                        $zipFiles[] = $file;
+                    }
+                }
 
-                // Determine if the product is an audiobook to set isImageStand
-                $isImageStand = $type === 'audiobook';
-
-                // Output details before creating the product
-                echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple, isImageStand = $isImageStand\n";
+                // Set isMultiple to true if it has a zip file
+                $isMultiple = count($zipFiles) > 0;
 
                 // Check for a description.txt file in the product directory
                 $descriptionFilePath = $productPath . '/description.txt';
                 $description = null;
 
                 if (file_exists($descriptionFilePath)) {
-
                     $f = fopen($descriptionFilePath, 'r');
-                    $description = fread($f, filesize($descriptionFilePath)); // Read the content of the description file
+                    $description = fread($f, filesize($descriptionFilePath));
+                    fclose($f);
 
-                    // Trim the description to remove any extra whitespace
-//                    $description = trim($description);
-
-                    // Debugging: Output the description length and content for verification
                     if (empty($description)) {
                         echo "Description file is empty for product: $productName in $productPath\n";
                     } else {
@@ -101,43 +101,57 @@ class ProductSeeder extends Seeder
                     echo "No description file found for product: $productName in $productPath\n";
                 }
 
-                // Output details before creating the product
-                echo "Creating product: Name = $productName, Type = $type, Image = $productPath/$imageFile, Price = $price, isMultiple = $isMultiple, isImageStand = $isImageStand\n";
-
-                // Create the product with the price, isSingle status, isImageStand, and description
-                $product = Product::factory()->create([
+                // Create the product
+                $product = Product::create([
                     'name' => $productName,
-                    'image' => 'storage/products/' . $type . '/' . $productName . '/' . $imageFile, // Use the /storage path
                     'type' => $type,
-                    'price' => $price, // Set the price based on the product type
-                    'isMultiple' => $isMultiple, // Set isMultiple based on the file count
-                    'isImageStand' => $isImageStand, // Set isImageStand based on the product type
-                    'description' => $description, // Set the description if available
+                    'price' => $price,
+                    'isMultiple' => $isMultiple,
+                    'description' => $description,
                 ]);
 
+                // Add image files as related File records
+                foreach ($imageFiles as $image) {
+                    $product->files()->create([
+                        'title' => pathinfo($image['file'], PATHINFO_FILENAME),
+                        'file_path' => $type . '/' . $productName . '/' . $image['file'],
+                        'type' => $image['type'],
+                    ]);
+                    echo "Added image file: {$image['file']} to product: $productName, type: {$image['type']}\n";
+                }
 
                 // Add MP3 files as related File records
                 foreach ($mp3Files as $file) {
-                    // Calculate the length of the audio file
-                    $filePath = $productPath . '/' . $file;
-
-                    // Check if the file name contains 'sample'
-                    $isSample = stripos($file, 'sample') !== false;
-
-                    // Create the related file entry
                     $product->files()->create([
                         'title' => pathinfo($file, PATHINFO_FILENAME),
-                        'file_path' => 'storage/products/' . $type . '/' . $productName . '/' . $file, // File path
-                        'isSample' => $isSample,
+                        'file_path' => $type . '/' . $productName . '/' . $file,
+                        'type' => 'audio',
                     ]);
-
-                    echo "Added file: $file to product: $productName, isSample: $isSample";
+                    echo "Added audio file: $file to product: $productName\n";
                 }
 
+                // Add MP3 sample files as related File records
+                foreach ($audioSamples as $sample) {
+                    $product->files()->create([
+                        'title' => pathinfo($sample, PATHINFO_FILENAME),
+                        'file_path' => $type . '/' . $productName . '/' . $sample,
+                        'type' => 'audioSample',
+                    ]);
+                    echo "Added audio sample file: $sample to product: $productName\n";
+                }
+
+                // Add ZIP files as related File records
+                foreach ($zipFiles as $zip) {
+                    $product->files()->create([
+                        'title' => pathinfo($zip, PATHINFO_FILENAME),
+                        'file_path' => $type . '/' . $productName . '/' . $zip,
+                        'type' => 'zip',
+                    ]);
+                    echo "Added ZIP file: $zip to product: $productName\n";
+                }
 
                 echo "Product created successfully: $productName\n";
             }
-
         }
     }
 }

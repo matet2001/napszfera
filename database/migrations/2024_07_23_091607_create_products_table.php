@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);  // Price column suitable for HUF
-            $table->string('image')->nullable();
-            $table->boolean('isImageStand')->default(false);
             $table->enum('type', ['meditation', 'audiobook', 'lecture']);
             $table->boolean('isMultiple')->default(false);
             $table->timestamps();

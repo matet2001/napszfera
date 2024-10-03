@@ -12,7 +12,7 @@
                 {{-- Image Section --}}
                 <div class="img rounded-xl">
                     <div class="img-box h-full max-lg:mx-auto rounded-lg overflow-hidden">
-                        <x-product.image :$product />
+                        <x-product.image :product="$product" :isImageStand="$product->getIsImageStand()"/>
                     </div>
                 </div>
 

@@ -16,8 +16,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade'); // Foreign key to product table
             $table->string('title');
             $table->string('file_path');
-            $table->text('description')->nullable();
-            $table->boolean('isSample')->default(false);
+            $table->enum('type', ['audio', 'audioSample', 'image', 'imageStand', 'zip']);
             $table->timestamps();
         });
     }

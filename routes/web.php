@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{BlogController,
     CartController,
     CheckoutController,
+    DownloadController,
     InventoryController,
     ProductController,
     ProfileController,
@@ -75,6 +76,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Inventory routes
     Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
     Route::get('/inventory/{product}', [InventoryController::class, 'show'])->name('inventory.show');
+
+        // Route for downloading the entire folder
+    Route::get('/product/download/{id}', [DownloadController::class, 'download'])->name('product.download');
+
 });
 
 // Authentication routes (if not already included in another file)

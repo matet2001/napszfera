@@ -30,25 +30,23 @@ class AppServiceProvider extends ServiceProvider
 
             if (Auth::check()) {
                 $userId = Auth::id();
+                // Load the user's cart with the related products
                 $cart = Cart::with('items.product')->where('user_id', $userId)->first();
 
-                // Transform authenticated cart to match guest cart structure
-                $cart = (object) [
-                    'items' => $cart ? $cart->items->map(function ($item) {
-                        return (object) [
-                            'product_id' => $item->product_id,
-                            'name' => $item->product->name,
-                            'image' => $item->product->image,
-                            'price' => $item->product->price,
-                            'description' => $item->product->description,
-                            'type' => $item->product->type,
-                            'isImageStand' => $item->product->isImageStand,
-                        ];
-                    }) : collect([])
-                ];
-//                Log::info('Auth Cart data:', ['cart' => $cart]);
+                if ($cart) {
+                    // Transform the authenticated cart to contain actual product instances
+                    $cart = (object) [
+                        'items' => $cart->items->map(function ($item) {
+                            return $item->product;  // Return the Product model directly
+                        })
+                    ];
+                } else {
+                    $cart = (object) ['items' => collect([])];  // Empty cart structure
+                }
             }
+
             $view->with('cart', $cart);
         });
+
     }
 }

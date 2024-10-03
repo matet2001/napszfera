@@ -3,7 +3,7 @@
     <section class="relative w-full">
         <!-- "X" Icon for Deleting the Item -->
         <div class="w-full mx-auto px-2 sm:px-6 lg:px-0">
-            <form action="{{ route('cart.remove', $product->product_id) }}" method="POST"
+            <form action="{{ route('cart.remove', $product->id) }}" method="POST"
                   class="absolute right-1 top-1 flex justify-center items-center">
                 @csrf
                 @method('DELETE')
@@ -17,13 +17,13 @@
             <div class="grid grid-cols-3 gap-4 sm:gap-8 mx-auto max-md:px-2">
                 <div class="img rounded-xl">
                     <div class="img-box aspect-w-1 aspect-h-1 max-lg:mx-auto w-full">
-                        <x-product.image :$product/>
+                        <x-product.image :product="$product" :isImageStand="$product->isImageStand"/>
                     </div>
                 </div>
                 <div
                     class="col-span-2 data w-full sm:pr-4 pr-0 justify-start flex flex-col sm:items-start items-center max-lg:pb-2">
                     <div class="data w-full max-w-xl text-left ml-3">
-                        <a href="{{ route('product.show', ['product' => $product->product_id]) }}">
+                        <a href="{{ route('product.show', ['product' => $product->id]) }}">
                             <h2 class="text-lg sm:text-xl leading-8 capitalize text-white">
                                 {{ $product->name }}
                             </h2>

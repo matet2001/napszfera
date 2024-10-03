@@ -1,5 +1,3 @@
-- le lehessen tölteni a termék mappákat
-
 - Deploy page
 
 - Switch to simple pay and szamlazz.hu
