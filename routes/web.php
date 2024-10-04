@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{BlogController,
+    BugReportController,
     CartController,
     CheckoutController,
     DownloadController,
@@ -77,9 +78,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
     Route::get('/inventory/{product}', [InventoryController::class, 'show'])->name('inventory.show');
 
-        // Route for downloading the entire folder
+    // Route for downloading the entire folder
     Route::get('/product/download/{id}', [DownloadController::class, 'download'])->name('product.download');
 
+    Route::post('/bug/report', [BugReportController::class, 'store'])->name('bug.report');
 });
 
 // Authentication routes (if not already included in another file)
