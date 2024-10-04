@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BlogController,
+use App\Http\Controllers\{AdminController,
+    BlogController,
     BugReportController,
     CartController,
     CheckoutController,
@@ -36,6 +37,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/product/upload', [UploadController::class, 'create'])->name('product.create');
     Route::post('/product/store', [UploadController::class, 'store'])->name('product.store');
     Route::post('/product/upload', [UploadController::class, 'upload'])->name('product.upload');
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/admin', [AdminController::class, 'togglePurchases'])->name('admin.toggle-purchases');
 });
 
 
@@ -68,7 +72,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
     Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
-    Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+
+    Route::middleware('purchases.enabled')->group(function () {
+        Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+    });
 
     // Checkout routes
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');

@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
         $adminPassword = env('ADMIN_PASSWORD', 'defaultpassword');
 
         // Output for debugging
-        echo "Creating admin user with email: $adminName\n $adminEmail\n $adminPhone\n $adminPassword\n";
+//        echo "Creating admin user with email: $adminName\n $adminEmail\n $adminPhone\n $adminPassword\n";
 
         // Create the admin user
         $admin = User::create([

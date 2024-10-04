@@ -41,13 +41,22 @@
                 </div>
                 <form action="{{ route('cart.checkout') }}" method="POST">
                     @csrf
-                    <button type="submit"
-                            class="mt-4 sm:mt-6 block w-full rounded-md px-5 py-2.5 text-center text-sm font-medium transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-blue-300
-                            {{ !$cart || $cart->items->count() === 0 ? 'bg-background cursor-not-allowed text-gray-600' : 'bg-primary hover:bg-accent hover:text-black' }}"
-                            @if(!$cart || $cart->items->count() === 0) disabled @endif>
-                        Fizetés
-                    </button>
+
+                    @if (!$setting->purchase_enabled)
+                        <!-- Display a red notification when purchases are disabled -->
+                        <div class="w-full mt-4 px-5 py-4 rounded-md bg-red-500 text-white text-center font-medium text-sm">
+                            Vásárlások jelenleg le vannak tiltva
+                        </div>
+                    @else
+                        <button type="submit"
+                                class="mt-4 sm:mt-6 block w-full rounded-md px-5 py-2.5 text-center text-sm font-medium transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-blue-300
+                {{ !$cart || $cart->items->count() === 0 ? 'bg-background cursor-not-allowed text-gray-600' : 'bg-primary hover:bg-accent hover:text-black' }}"
+                                @if(!$cart || $cart->items->count() === 0) disabled @endif>
+                            Fizetés
+                        </button>
+                    @endif
                 </form>
+
 
 
             </div>

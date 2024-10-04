@@ -51,6 +51,7 @@
                         </form>
 
                         @if(Auth::check() && Auth::user()->is_admin)
+                            <a href="{{ route('admin.index') }}" class="block bg-yellow px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-2">Admin Beállítások</a>
                             <a href="{{ route('product.create') }}" class="block bg-yellow px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-2">Termék Feltöltés</a>
                             <a href="{{ route('blog.create') }}" class="block bg-yellow px-4 py-2 text-base text-black hover:bg-gray-500" role="menuitem" tabindex="-1" id="user-menu-item-3">Blog Posztolás</a>
                         @endif

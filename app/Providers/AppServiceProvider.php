@@ -2,12 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Product;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\View;
 use App\Models\Cart;
+use App\Models\Setting;  // Import the Setting model
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             $cart = null;
+            $setting = Setting::first();  // Assuming you only have one settings row
 
             if (Auth::check()) {
                 $userId = Auth::id();
@@ -45,8 +44,8 @@ class AppServiceProvider extends ServiceProvider
                 }
             }
 
-            $view->with('cart', $cart);
+            // Pass the cart and setting to all views
+            $view->with('cart', $cart)->with('setting', $setting);
         });
-
     }
 }

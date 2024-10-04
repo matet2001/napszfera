@@ -1,4 +1,4 @@
-@props(["product"])
+@props(['product'])
 
 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex items-center justify-center gap-3 mt-4 w-full">
     @csrf
@@ -10,8 +10,15 @@
             $isInCart = $cart && $cart->items->pluck('product_id')->contains($product->id);
         @endphp
 
-
-    @if ($isInCart)
+        @if (!$setting->purchase_enabled)
+            <!-- If purchases are disabled, show a notification instead of the Add to Cart button -->
+            <div class="w-full px-5 py-4 rounded-[100px] bg-red-500 flex items-center justify-center font-semibold text-lg text-white shadow-sm transition-all duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span>Vásárlások jelenleg le vannak tiltva</span>
+            </div>
+        @elseif ($isInCart)
             <!-- If the product is in the cart, show the cart section -->
             <div class="w-full px-5 py-4 rounded-[100px] bg-yellow flex items-center justify-center font-semibold text-lg text-black shadow-sm transition-all duration-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
