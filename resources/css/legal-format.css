@@ -1,0 +1,12 @@
+h2, h3, strong {
+    color: white;
+    line-height: 1rem;
+}
+
+p {
+    font-size: medium;
+}
+
+body {
+    background-color: black;
+}
