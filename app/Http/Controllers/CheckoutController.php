@@ -50,13 +50,19 @@ class CheckoutController extends Controller
                 'status' => 'completed',  // You can use any status system you prefer
             ]);
 
-            // Add items to the inventory and attach them to the order
             foreach ($cart->items as $item) {
-                // Add the item to the user's inventory
-                InventoryItem::create([
-                    'inventory_id' => $inventory->id,
-                    'product_id' => $item->product_id
-                ]);
+                // Check if the item already exists in the user's inventory
+                $existingItem = InventoryItem::where('inventory_id', $inventory->id)
+                    ->where('product_id', $item->product_id)
+                    ->first();
+
+                if (!$existingItem) {
+                    // Add the item to the user's inventory if it doesn't exist
+                    InventoryItem::create([
+                        'inventory_id' => $inventory->id,
+                        'product_id' => $item->product_id
+                    ]);
+                }
 
                 // Add the purchased item to the order (assuming you have an OrderItem model)
                 OrderItem::create([
@@ -66,6 +72,7 @@ class CheckoutController extends Controller
                     'price' => $item->product->price,  // Store the price at the time of purchase
                 ]);
             }
+
 
             // Send purchase confirmation email with the order details
             Mail::to($request->user()->email)->send(new PurchaseConfirmation($order));
