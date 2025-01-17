@@ -50,6 +50,8 @@ Route::get('/product/lecture', [ProductController::class, 'lecture'])->name('pro
 Route::get('/product/meditation', [ProductController::class, 'meditation'])->name('product.meditation');
 Route::get('/product/audiobook', [ProductController::class, 'audiobook'])->name('product.audiobook');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+
 
 // Search route
 Route::get('/search', [ProductController::class, 'search'])->name('search');

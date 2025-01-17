@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
         ]);
 
         // Create the user's inventory
-        $inventory = Inventory::create([
+        Inventory::create([
             'user_id' => $user->id,
         ]);
 
