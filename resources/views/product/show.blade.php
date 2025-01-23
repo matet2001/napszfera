@@ -34,10 +34,10 @@
                         @endphp
 
                         <div class="flex flex-col sm:flex-row sm:items-center mb-6">
-                            <h6 class="font-manrope font-semibold text-xl leading-9 pr-5 text-gray">
-                                {{-- Display formatted duration --}}
-                                {{ $formattedDuration }}
-                            </h6>
+{{--                            <h6 class="font-manrope font-semibold text-xl leading-9 pr-5 text-gray">--}}
+{{--                                --}}{{-- Display formatted duration --}}
+{{--                                {{ $formattedDuration }}--}}
+{{--                            </h6>--}}
                             <h6 class="font-manrope font-semibold text-2xl leading-9 pr-5 text-white">
                                 {{ $product->price }} FT
                             </h6>

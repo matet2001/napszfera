@@ -1,4 +1,5 @@
 @props(['latestPost'])
+<x-app-layout>
     <div class="mx-auto border border-white text-center leading-5 px-6 py-6 rounded-xl m-10 container">
 
         <h2 class="text-xl font-semibold mb-4">Legújabb Bejegyzés</h2>
@@ -18,4 +19,4 @@
             @endif
         </div>
     </div>
-
+</x-app-layout>
