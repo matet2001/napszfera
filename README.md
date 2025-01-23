@@ -21,7 +21,6 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#contributors">Contributors</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -30,10 +29,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#stopping the containers">Stopping the Containers</a></li>
-    <li><a href="#troubleshooting">Troubleshooting</a></li>
+    <li><a href="#stopping-the-containers">Stopping the Containers</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
