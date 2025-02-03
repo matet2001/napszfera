@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     curl \
+    netcat-openbsd \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
@@ -35,4 +36,9 @@ RUN composer install --no-dev --optimize-autoloader
 COPY .env.example .env
 RUN php artisan key:generate
 
-CMD ["php-fpm"]
+# Copy and set permissions for the entrypoint script
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Use the entrypoint script
+ENTRYPOINT ["/entrypoint.sh"]
