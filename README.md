@@ -138,9 +138,13 @@ Download purchased audio files (now replaced with AI-generated samples).
 The admin panel (if enabled) can be used for managing products, viewing orders, and monitoring user activity. The project demonstrates a complete e-commerce solution tailored for digital products.
 
 
-![Website Location Screenshot](screenshots/meditations.png)
+![Meditation section](screenshots/meditations.png)
 
-![Website Event Screenshot](screenshots/sample.png)
+![Product Sample](screenshots/sample.png)
+
+![Cart Screenshot](screenshots/cart.png)
+
+![Payment Screenshot](screenshots/payment.png)
 
 ### Stopping the Containers
 
