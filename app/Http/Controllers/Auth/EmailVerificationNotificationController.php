@@ -14,7 +14,6 @@ class EmailVerificationNotificationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // TODO: Make sure no one can spam this route
         // Rate limiting
         $request->validate([
             'email' => 'required|email',

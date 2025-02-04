@@ -44,17 +44,6 @@ class AdminSeeder extends Seeder
                 'product_id' => $product->id,
             ]);
         }
-
-        User::create([
-            'name' => 'Máté Pojbics',
-            'email' => 'matet2001@gmail.com',
-            'phone' => '0000000',
-            'password' => Hash::make('matetmatet'),
-            'is_admin' => false,
-            'email_verified_at' => now(),
-        ]);
     }
-
-
 }
 

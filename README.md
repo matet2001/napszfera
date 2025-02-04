@@ -54,6 +54,7 @@ Napszfera demonstrates how to create an e-commerce platform with seamless paymen
   [![Stripe][Stripe]][Stripe-url]
 - Containerization:  
   [![Docker][Docker]][Docker-url]
+  [![NGINX][NGINX]][NGINX-url]
 
 <!-- CONTACT -->
 ## Contact
@@ -93,11 +94,21 @@ Here you find the steps of the installation of our project:
 
    Once copied, open the `.env` file and update the values to match your credentials and environment settings. For example:
 
+    If you want to test email sending, please provide this values from an email host like [![Mailgun][Mailgun]][Mailgun-url]
     ```plaintext
-    DB_PASSWORD=yourpassword
-    DB_USERNAME=yourusername
-    jwtSecret=======================CodeCool=Spring===========================
-    jwtExpirationMs=86400000
+    MAIL_USERNAME=
+    MAIL_PASSWORD=
+    ```
+   
+    If you want to test payments, please provide this values from [![Stripe][Stripe]][Stripe-url]
+    ```plaintext
+    STRIPE_KEY=
+    STRIPE_SECRET=
+    ```
+   
+    Also, this if you want to test bug report
+    ```plaintext
+    SUPPORT_EMAIL=
     ```
 
    Make sure that the credentials you provide are secure and appropriate for your environment.
@@ -112,6 +123,8 @@ Here you find the steps of the installation of our project:
 
    The services will be available at:
    http://localhost
+
+    If you had any issues running the project, feel free to contact me at matet2001@gmail.com
 
 ### Usage
 
@@ -172,3 +185,6 @@ docker-compose down
 
 [NGINX]: https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white
 [NGINX-url]: https://nginx.org/
+
+[Mailgun]: https://img.shields.io/badge/Mailgun-DD2C00?style=for-the-badge&logo=mailgun&logoColor=white
+[Mailgun-url]: https://www.mailgun.com/

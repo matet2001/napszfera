@@ -9,7 +9,7 @@ done
 
 # Run migrations with seeding
 echo "Running migrations..."
-php artisan migrate --force --seed
+php artisan migrate:fresh --force --seed
 
 # Start PHP-FPM
 php-fpm
