@@ -1,5 +1,5 @@
 # Use official PHP image with necessary extensions
-FROM php:8.2-fpm
+FROM php:8.2-fpm AS php
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -16,6 +16,9 @@ RUN apt-get update && apt-get install -y \
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Install Node.js and NPM
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
+
 # Set working directory
 WORKDIR /var/www
 
@@ -29,16 +32,20 @@ RUN mkdir -p /var/www/storage /var/www/bootstrap/cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 RUN chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-# Install dependencies
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Set Laravel environment
-COPY .env.example .env
-RUN php artisan key:generate
+# Install NPM dependencies and build assets
+RUN npm install && npm run build
 
-# Copy and set permissions for the entrypoint script
-COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# --- Separate stage for serving built assets ---
+FROM nginx:latest AS nginx
 
-# Use the entrypoint script
-ENTRYPOINT ["/entrypoint.sh"]
+# Copy built assets from the PHP stage
+COPY --from=php /var/www/public/build /usr/share/nginx/html/build
+
+# Copy Laravel public folder (except build folder)
+COPY --from=php /var/www/public /var/www/public
+
+# Copy Nginx configuration
+COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
