@@ -133,7 +133,8 @@ Once the services are running, you can access the frontend to explore the websho
 We have security in place on the website, meaning only logged-in users can access the shop and purchase content. Guests will see limited features. After logging in, users can:
 
 Browse and purchase meditations, lectures, and audiobooks.
-Complete secure payments using Stripe.
+Complete secure payments using Stripe. 
+You can use 4242 4242 4242 4242 for card number, and anything for the other fields to test succesfull payment, and 4000 0000 0000 9995 for declined payments.
 Download purchased audio files (now replaced with AI-generated samples).
 The admin panel (if enabled) can be used for managing products, viewing orders, and monitoring user activity. The project demonstrates a complete e-commerce solution tailored for digital products.
 
